@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Data - AI-Powered Data Insights in Hours</title>
+    <title>Apex Data - AI-Powered Business Insights in Hours</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,7 @@
     <style>
         :root {
             --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
             --secondary-color: #0d1a3c;
             --background-color: #040c18;
             --text-color: #e0e0e0;
@@ -26,6 +27,240 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--text-color); line-height: 1.6; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        header { background: rgba(4, 12, 24, 0.8); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        header { 
+            background: rgba(4, 12, 24, 0.85); 
+            backdrop-filter: blur(10px); 
+            padding: 1rem 0; 
+            position: sticky; /* Sticky Nav */
+            top: 0;
+            width: 100%; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-color);
+        }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700;
+        .logo { font-size: 1.8rem; font-weight: 700; color: #fff; text-decoration: none; }
+        .logo i { color: var(--primary-color); }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { color: var(--text-color); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
+        nav ul li a:hover { color: var(--primary-color); }
+        .hero { min-height: 95vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(4, 12, 24, 0.7), rgba(4, 12, 24, 0.9)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover; }
+        .hero-content { padding-top: 40px; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; color: #fff; }
+        .hero-content h1 span { color: var(--primary-color); }
+        .hero-content .sub-headline { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; color: #b0b0b0; font-style: italic;}
+        .btn { display: inline-block; padding: 14px 32px; background-color: var(--primary-color); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; cursor: pointer; border: none; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2); }
+        .btn:hover { background-color: var(--primary-hover-color); transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3); }
+        section { padding: 100px 0; } /* Increased whitespace */
+        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; font-weight: 600; }
+        .how-it-works-grid, .trust-grid, .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .step-card { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; }
+        .step-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .step-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        #deliverables { background-color: var(--secondary-color); }
+        .deliverables-gallery { border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; margin-top: 2rem; }
+        .deliverables-gallery img { width: 100%; height: auto; display: block; }
+        .sample-report-cta { text-align: center; margin-top: 3rem; }
+        .sample-report-cta p { margin-bottom: 1rem; font-size: 1.1rem; }
+        .free-sample-cta { text-align: center; background-color: var(--card-bg-color); padding: 2.5rem; border-radius: 10px; margin: 3rem auto; border: 1px solid var(--primary-color); max-width: 800px; }
+        .free-sample-cta h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .free-sample-cta p { margin-bottom: 1.5rem; color: #b0b0b0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 800px; margin: 0 auto; }
+        .pricing-card { background: var(--card-bg-color); padding: 2.5rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 123, 255, 0.1); }
+        .pricing-card h3 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .price { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--primary-color); }
+        .pricing-card p { font-size: 1rem; color: #b0b0b0; margin-bottom: 1.5rem; min-height: 48px; }
+        .pricing-card ul { list-style: none; margin-bottom: 2rem; text-align: left; flex-grow: 1; }
+        .pricing-card ul li { margin-bottom: 0.75rem; }
+        .pricing-card ul li i { color: var(--success-color); margin-right: 10px; }
+        .pricing-card .btn { width: 100%; margin-top: auto; }
+        .faq-item { background: var(--card-bg-color); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-color); }
+        .faq-item h3 { margin-bottom: 0.5rem; }
+        #about { background-color: var(--secondary-color); }
+        #about p { text-align: center; max-width: 700px; margin: 0 auto; font-size: 1.2rem; line-height: 1.8; }
+        #contact { text-align: center; }
+        #contact p { font-size: 1.2rem; margin-bottom: 2rem; }
+        #contact .contact-link { font-size: 1.5rem; color: var(--primary-color); text-decoration: none; font-weight: 600; }
+        #contact .contact-link:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 3rem 0; background-color: #02060c; border-top: 1px solid var(--border-color); }
+        .footer-content { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 2rem; max-width: 600px; margin: 0 auto 2rem auto; }
+        .footer-col h4 { margin-bottom: 1rem; color: #fff; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.5rem; }
+        .footer-col a { color: var(--text-color); text-decoration: none; }
+        .footer-col a:hover { color: var(--primary-color); }
+        /* Other styles as before */
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo"><i class="fas fa-chart-line"></i> Apex Data</a>
+            <ul>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#deliverables">Sample</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1>AI-Powered Business Insights <span>from Raw Data in Just Hours</span></h1>
+                <p class="sub-headline">Trusted by professionals in retail, trading, and finance.</p>
+                <a href="#pricing" class="btn">Get Started</a>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="container">
+                <h2 class="section-title">Get Insights in 3 Simple Steps</h2>
+                <div class="how-it-works-grid">
+                    <div class="step-card">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <h3>1. Pick a Plan or Try a Sample</h3>
+                        <p>Select the plan that fits your needs, or try our service for free with a small dataset.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>2. Upload Your Data Securely</h3>
+                        <p>Submit your data file through our portal. We handle CSV, Excel, and JSON files.</p>
+                    </div>
+                    <div class="step-card">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>3. Receive Your Report</h3>
+                        <p>Receive a comprehensive, professional report with visualizations and insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="deliverables">
+            <div class="container">
+                <h2 class="section-title">This Is What You'll Get</h2>
+                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: #b0b0b0;">We transform your raw numbers into a clear, concise, and actionable report. Below is a sample of our standard output.</p>
+                <div class="deliverables-gallery">
+                    <img src="https://placehold.co/1100x600/0a1429/e0e0e0?text=Sample+Dashboard+Screenshot" alt="Sample Dashboard">
+                </div>
+                <div class="sample-report-cta">
+                    <p>Want a closer look? Download a complete sample report in PDF format.</p>
+                    <a href="#" class="btn">Download Sample Report (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <div class="container">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <div class="free-sample-cta">
+                    <h3>Want to see the magic first?</h3>
+                    <p>Get a free sample of our insights for any dataset up to 50 rows.</p>
+                    <button class="btn open-modal-btn" data-plan="Free Sample">Start Free Sample</button>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Starter</h3>
+                        <div class="price">$100</div>
+                        <p>Perfect for startups, pilots, or one-time projects.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i>Up to <strong>500 rows</strong> of data</li>
+                            <li><i class="fas fa-check-circle"></i>2-3 Key Insights & KPIs</li>
+                            <li><i class="fas fa-check-circle"></i>Core Visualizations (Charts & Graphs)</li>
+                            <li><i class="fas fa-check-circle"></i>Report delivered in PDF format</li>
+                            <li><i class="fas fa-check-circle"></i>Delivery within <strong>6 hours</strong></li>
+                        </ul>
+                        <button class="btn open-modal-btn" data-plan="Starter">🚀 Get My Insights Now</button>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Pro</h3>
+                        <div class="price">$400</div>
+                        <p>For in-depth analysis and business-critical insights.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i>Up to <strong>2000 rows</strong> of data</li>
+                            <li><i class="fas fa-check-circle"></i>Detailed Trend & Anomaly Analysis</li>
+                            <li><i class="fas fa-check-circle"></i>Advanced KPIs & Metrics</li>
+                            <li><i class="fas fa-check-circle"></i><strong>Interactive Dashboard</strong></li>
+                            <li><i class="fas fa-check-circle"></i>+ Custom Metric Tracking</li>
+                            <li><i class="fas fa-check-circle"></i>Priority delivery within <strong>12 hours</strong></li>
+                        </ul>
+                        <button class="btn open-modal-btn" data-plan="Pro">🚀 Get My Insights Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>What file formats do you support?</h3>
+                        <p>We currently support .csv, .xlsx (Excel), and .json files. If you have another format, please contact us first.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do you handle my data's privacy?</h3>
+                        <p>Your data is encrypted at all times and permanently deleted from our systems 24 hours after your report is delivered. Please read our full Privacy Policy for more details.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I request specific metrics or KPIs?</h3>
+                        <p>Yes! Our Pro plan includes the option for custom metric tracking. After uploading your file, you can specify what you're looking for in a follow-up email.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about">
+             <div class="container">
+                <h2 class="section-title">About Apex Data</h2>
+                <p>Apex Data is built by data engineers and AI enthusiasts passionate about turning raw data into clarity. We believe that powerful insights shouldn't take days to uncover.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Have Questions?</h2>
+                <p>If you have a custom project or any questions, feel free to reach out.</p>
+                <a href="mailto:contact.apexdata@gmail.com" class="contact-link">contact.apexdata@gmail.com</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#pricing">Plans & Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:contact.apexdata@gmail.com">Email Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p>Copyright &copy; 2025 Apex Data</p>
+        </div>
+    </footer>
+    
+    <div id="uploadModal" class="modal-overlay"> ... </div>
+    <script> ... </script>
+    
+</body>
+</html>
