@@ -92,7 +92,18 @@
         .footer-col ul li { margin-bottom: 0.5rem; }
         .footer-col a { color: var(--text-color); text-decoration: none; }
         .footer-col a:hover { color: var(--primary-color); }
-        /* Other styles as before */
+        .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; }
+        .modal-content { background-color: var(--card-bg-color); margin: auto; padding: 30px; border: 1px solid var(--border-color); border-radius: 10px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; }
+        .close-button:hover, .close-button:focus { color: #fff; text-decoration: none; cursor: pointer; }
+        #uploadForm .form-group { margin-bottom: 1.5rem; }
+        #uploadForm label { display: block; margin-bottom: 8px; font-weight: 600; }
+        #uploadForm input[type="email"], #uploadForm input[type="file"] { width: 100%; padding: 10px; background-color: var(--background-color); border: 1px solid var(--border-color); border-radius: 5px; color: var(--text-color); }
+        #uploadForm input[type="file"]::file-selector-button { background-color: var(--primary-color); color: #fff; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; }
+        #form-message { margin-top: 1rem; padding: 10px; border-radius: 5px; display: none; text-align: center; }
+        .message-success { background-color: var(--success-color); color: #fff; }
+        .message-error { background-color: var(--error-color); color: #fff; }
+        @media (max-width: 768px) { .hero-content h1 { font-size: 2.5rem; } nav ul { display: none; } .pricing-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -117,171 +128,3 @@
                 <p class="sub-headline">Trusted by professionals in retail, trading, and finance.</p>
                 <a href="#pricing" class="btn">Get Started</a>
             </div>
-        </section>
-
-        <section id="how-it-works">
-            <div class="container">
-                <h2 class="section-title">Get Insights in 3 Simple Steps</h2>
-                <div class="how-it-works-grid">
-                    <div class="step-card">
-                        <i class="fas fa-mouse-pointer"></i>
-                        <h3>1. Pick a Plan or Try a Sample</h3>
-                        <p>Select the plan that fits your needs, or try our service for free with a small dataset.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>2. Upload Your Data Securely</h3>
-                        <p>Submit your data file through our portal. We handle CSV, Excel, and JSON files.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>3. Receive Your Report</h3>
-                        <p>Receive a comprehensive, professional report with visualizations and insights.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="deliverables">
-            <div class="container">
-                <h2 class="section-title">This Is What You'll Get</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: #b0b0b0;">We transform your raw numbers into a clear, concise, and actionable report. Below is a sample of our standard output.</p>
-                <div class="deliverables-gallery">
-                    <img src="https://placehold.co/1100x600/0a1429/e0e0e0?text=Sample+Dashboard+Screenshot" alt="Sample Dashboard">
-                </div>
-                <div class="sample-report-cta">
-                    <p>Want a closer look? Download a complete sample report in PDF format.</p>
-                    <a href="#" class="btn">Download Sample Report (PDF)</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing">
-            <div class="container">
-                <h2 class="section-title">Choose Your Plan</h2>
-                <div class="free-sample-cta">
-                    <h3>Want to see the magic first?</h3>
-                    <p>Get a free sample of our insights for any dataset up to 50 rows.</p>
-                    <button class="btn open-modal-btn" data-plan="Free Sample">Start Free Sample</button>
-                </div>
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Starter</h3>
-                        <div class="price">$100</div>
-                        <p>Perfect for startups, pilots, or one-time projects.</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i>Up to <strong>500 rows</strong> of data</li>
-                            <li><i class="fas fa-check-circle"></i>2-3 Key Insights & KPIs</li>
-                            <li><i class="fas fa-check-circle"></i>Core Visualizations (Charts & Graphs)</li>
-                            <li><i class="fas fa-check-circle"></i>Report delivered in PDF format</li>
-                            <li><i class="fas fa-check-circle"></i>Delivery within <strong>6 hours</strong></li>
-                        </ul>
-                        <button class="btn open-modal-btn" data-plan="Starter">🚀 Get My Insights Now</button>
-                    </div>
-                    <div class="pricing-card">
-                        <h3>Pro</h3>
-                        <div class="price">$400</div>
-                        <p>For in-depth analysis and business-critical insights.</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i>Up to <strong>2000 rows</strong> of data</li>
-                            <li><i class="fas fa-check-circle"></i>Detailed Trend & Anomaly Analysis</li>
-                            <li><i class="fas fa-check-circle"></i>Advanced KPIs & Metrics</li>
-                            <li><i class="fas fa-check-circle"></i><strong>Interactive Dashboard</strong></li>
-                            <li><i class="fas fa-check-circle"></i>+ Custom Metric Tracking</li>
-                            <li><i class="fas fa-check-circle"></i>Priority delivery within <strong>12 hours</strong></li>
-                        </ul>
-                        <button class="btn open-modal-btn" data-plan="Pro">🚀 Get My Insights Now</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3>What file formats do you support?</h3>
-                        <p>We currently support .csv, .xlsx (Excel), and .json files. If you have another format, please contact us first.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How do you handle my data's privacy?</h3>
-                        <p>Your data is encrypted at all times and permanently deleted from our systems 24 hours after your report is delivered. You can read our full <a href="privacy.html">Privacy Policy</a> for more details.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Can I request specific metrics or KPIs?</h3>
-                        <p>Yes! Our Pro plan includes the option for custom metric tracking. You can specify your needs after placing your order.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>What is your refund policy?</h3>
-                        <p>Due to the digital nature of our service, we do not offer refunds once work has begun. However, if you are unsatisfied with your report, please contact us and we will work with you to make it right.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="about">
-             <div class="container">
-                <h2 class="section-title">About Apex Data</h2>
-                <p>Apex Data is built by data engineers and AI enthusiasts passionate about turning raw data into clarity. We believe that powerful insights shouldn't take days to uncover.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Get in Touch</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: #b0b0b0;">Have a question, a custom project, or just want to say hello? Send us a message!</p>
-                <div class="contact-form-container">
-                    <form action="https://formspree.io/f/YOUR_UNIQUE_CODE" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width:100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#pricing">Plans & Pricing</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:contact.apexdata@gmail.com">Email Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <p>Copyright &copy; 2025 Apex Data</p>
-        </div>
-    </footer>
-    
-    <div id="uploadModal" class="modal-overlay"> ... </div>
-    <script> ... </script>
-
-</body>
-</html>
