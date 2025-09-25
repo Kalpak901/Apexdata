@@ -20,6 +20,8 @@
             --text-color: #e0e0e0;
             --card-bg-color: #0a1429;
             --border-color: #2a3c5e;
+            --success-color: #28a745;
+            --error-color: #dc3545;
         }
 
         * {
@@ -132,6 +134,8 @@
             border-radius: 5px;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
         .btn:hover {
@@ -255,6 +259,99 @@
             border-top: 1px solid var(--border-color);
         }
 
+        /* --------------- MODAL CSS START --------------- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg-color);
+            margin: auto;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #uploadForm .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        #uploadForm label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        #uploadForm input[type="email"],
+        #uploadForm input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            color: var(--text-color);
+        }
+        
+        #uploadForm input[type="file"]::file-selector-button {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        #form-message {
+            margin-top: 1rem;
+            padding: 10px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+        
+        .message-success {
+            background-color: var(--success-color);
+            color: #fff;
+        }
+        .message-error {
+            background-color: var(--error-color);
+            color: #fff;
+        }
+        /* --------------- MODAL CSS END --------------- */
+
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -300,14 +397,14 @@
                 <h2 class="section-title">Get Insights in 3 Simple Steps</h2>
                 <div class="how-it-works-grid">
                     <div class="step-card">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>1. Choose a Package</h3>
+                        <i class="fas fa-mouse-pointer"></i>
+                        <h3>1. Choose Your Plan</h3>
                         <p>Select the plan that best fits the size of your dataset and your analysis needs.</p>
                     </div>
                     <div class="step-card">
-                        <i class="fas fa-cogs"></i>
-                        <h3>2. We Process Your Data</h3>
-                        <p>Our powerful AI algorithms get to work, uncovering trends, patterns, and key metrics.</p>
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>2. Upload Your Data</h3>
+                        <p>Submit your data file securely through our portal. We handle CSV, Excel, and JSON files.</p>
                     </div>
                     <div class="step-card">
                         <i class="fas fa-file-alt"></i>
@@ -326,36 +423,18 @@
                         <h3>Starter</h3>
                         <div class="price">$100</div>
                         <p>For small datasets and initial explorations.</p>
-                        <ul>
-                            <li>Up to <strong>500 rows</strong> of data</li>
-                            <li>Standard Analysis</li>
-                            <li>Key Metrics Report</li>
-                            <li>24-hour Turnaround</li>
-                        </ul>
-                        <a href="#" class="btn">Select Plan</a>
+                        <button class="btn open-modal-btn" data-plan="Starter">Select Plan & Upload</button>
                     </div>
                     <div class="pricing-card">
                         <h3>Pro</h3>
                         <div class="price">$400</div>
                         <p>Perfect for most business needs and in-depth analysis.</p>
-                         <ul>
-                            <li>Up to <strong>2000 rows</strong> of data</li>
-                            <li>Advanced Analysis</li>
-                            <li>Interactive Dashboard</li>
-                            <li>12-hour Turnaround</li>
-                        </ul>
-                        <a href="#" class="btn">Select Plan</a>
+                        <button class="btn open-modal-btn" data-plan="Pro">Select Plan & Upload</button>
                     </div>
                     <div class="pricing-card">
                         <h3>Enterprise</h3>
                         <div class="price">Custom</div>
                         <p>For large-scale projects and custom requirements.</p>
-                         <ul>
-                            <li><strong>Over 2000 rows</strong></li>
-                            <li>Bespoke Analysis</li>
-                            <li>Dedicated Support</li>
-                            <li>Priority Turnaround</li>
-                        </ul>
                         <a href="mailto:contact.apexdata@gmail.com" class="btn">Contact Us</a>
                     </div>
                 </div>
@@ -377,6 +456,28 @@
         </div>
     </footer>
 
+    <div id="uploadModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 style="margin-bottom: 1.5rem;">Upload Your Data</h2>
+            <form id="uploadForm">
+                <input type="hidden" id="selectedPlan" name="plan">
+                
+                <div class="form-group">
+                    <label for="clientEmail">Your Email Address</label>
+                    <input type="email" id="clientEmail" name="email" placeholder="We'll send the results here" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dataFile">Data File</label>
+                    <input type="file" id="dataFile" name="file" accept=".csv, .xlsx, .json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Upload and Process</button>
+            </form>
+            <div id="form-message"></div>
+        </div>
+    </div>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -387,6 +488,95 @@
                 });
             });
         });
+
+        // --------------- MODAL JAVASCRIPT START ---------------
+        const modal = document.getElementById('uploadModal');
+        const openModalBtns = document.querySelectorAll('.open-modal-btn');
+        const closeModalBtn = document.querySelector('.close-button');
+        const selectedPlanInput = document.getElementById('selectedPlan');
+        
+        // Open the modal and set the selected plan
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const plan = btn.getAttribute('data-plan');
+                selectedPlanInput.value = plan;
+                modal.style.display = 'flex';
+                document.getElementById('uploadForm').reset();
+                document.getElementById('form-message').style.display = 'none';
+            });
+        });
+
+        // Close the modal
+        const closeModal = () => {
+            modal.style.display = 'none';
+        }
+        closeModalBtn.addEventListener('click', closeModal);
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+
+        // Handle Form Submission
+        const uploadForm = document.getElementById('uploadForm');
+        const messageDiv = document.getElementById('form-message');
+        const submitBtn = document.getElementById('submitBtn');
+
+        uploadForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+            
+            // --- IMPORTANT: PASTE YOUR N8N WEBHOOK URL HERE ---
+            const n8nWebhookUrl = 'YOUR_N8N_WEBHOOK_URL_HERE';
+            // ----------------------------------------------------
+
+            if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE') {
+                alert('Please configure the n8n webhook URL in the script.');
+                return;
+            }
+
+            // Show loading state
+            submitBtn.textContent = 'Uploading...';
+            submitBtn.disabled = true;
+            messageDiv.style.display = 'none';
+
+            const formData = new FormData(uploadForm);
+            
+            try {
+                const response = await fetch(n8nWebhookUrl, {
+                    method: 'POST',
+                    body: formData, // The browser will automatically set the 'Content-Type' to 'multipart/form-data'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+
+                // Assuming n8n returns a success message in JSON format
+                const result = await response.json(); 
+                
+                // Show success message
+                messageDiv.textContent = 'Upload successful! We have received your file and will email your insights shortly.';
+                messageDiv.className = 'message-success';
+                messageDiv.style.display = 'block';
+
+                // Close modal after a few seconds
+                setTimeout(() => {
+                    closeModal();
+                }, 4000);
+
+            } catch (error) {
+                console.error('Error uploading file:', error);
+                messageDiv.textContent = 'An error occurred. Please try again or contact support.';
+                messageDiv.className = 'message-error';
+                messageDiv.style.display = 'block';
+            } finally {
+                // Restore button state
+                submitBtn.textContent = 'Upload and Process';
+                submitBtn.disabled = false;
+            }
+        });
+        // --------------- MODAL JAVASCRIPT END ---------------
+
     </script>
 
 </body>
