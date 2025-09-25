@@ -150,7 +150,7 @@
         
         .section-title {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
             font-size: 2.5rem;
             font-weight: 600;
         }
@@ -181,12 +181,33 @@
             margin-bottom: 0.5rem;
         }
         
+        /* --------------- ADDED SECTION FOR FREE SAMPLE CTA --------------- */
+        .free-sample-cta {
+            text-align: center;
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--primary-color);
+        }
+        .free-sample-cta h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .free-sample-cta p {
+            margin-bottom: 1.5rem;
+            color: #b0b0b0;
+        }
+        /* --------------- END OF ADDED SECTION --------------- */
+        
         /* Pricing Section */
         .pricing-grid {
             display: grid;
+            /* This grid will now nicely center the 2 cards */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            align-items: center;
+            max-width: 800px; /* Constrain width for a better 2-card layout */
+            margin: 0 auto; /* Center the grid container */
         }
 
         .pricing-card {
@@ -259,7 +280,7 @@
             border-top: 1px solid var(--border-color);
         }
 
-        /* --------------- MODAL CSS START --------------- */
+        /* Modal CSS */
         .modal-overlay {
             display: none; /* Hidden by default */
             position: fixed;
@@ -349,7 +370,6 @@
             background-color: var(--error-color);
             color: #fff;
         }
-        /* --------------- MODAL CSS END --------------- */
 
 
         /* Responsive Design */
@@ -361,7 +381,7 @@
                 font-size: 1rem;
             }
             nav ul {
-                display: none; /* Simple hiding for mobile, can be replaced with a hamburger menu */
+                display: none;
             }
             .pricing-grid {
                  grid-template-columns: 1fr;
@@ -388,7 +408,7 @@
             <div class="hero-content">
                 <h1>Turn Raw Data into <span>Actionable Insights</span></h1>
                 <p>Stop waiting days for freelance analysis. Our AI engine delivers professional data insights in a matter of hours, giving you the competitive edge you need, faster.</p>
-                <a href="#pricing" class="btn">View Packages</a>
+                <a href="#pricing" class="btn">Get Started</a>
             </div>
         </section>
 
@@ -398,8 +418,8 @@
                 <div class="how-it-works-grid">
                     <div class="step-card">
                         <i class="fas fa-mouse-pointer"></i>
-                        <h3>1. Choose Your Plan</h3>
-                        <p>Select the plan that best fits the size of your dataset and your analysis needs.</p>
+                        <h3>1. Try a Sample or Pick a Plan</h3>
+                        <p>Select the plan that fits your needs, or try our service for free with a small dataset.</p>
                     </div>
                     <div class="step-card">
                         <i class="fas fa-cloud-upload-alt"></i>
@@ -418,26 +438,27 @@
         <section id="pricing">
             <div class="container">
                 <h2 class="section-title">Our Pricing</h2>
+
+                <div class="free-sample-cta">
+                    <h3>Want to see the magic first?</h3>
+                    <p>Get a free sample of our insights for any dataset up to 50 rows.</p>
+                    <button class="btn open-modal-btn" data-plan="Free Sample">Get Free Sample</button>
+                </div>
                 <div class="pricing-grid">
                     <div class="pricing-card">
                         <h3>Starter</h3>
                         <div class="price">$100</div>
-                        <p>For small datasets and initial explorations.</p>
+                        <p>For small datasets up to 500 rows and initial explorations.</p>
                         <button class="btn open-modal-btn" data-plan="Starter">Select Plan & Upload</button>
                     </div>
                     <div class="pricing-card">
                         <h3>Pro</h3>
                         <div class="price">$400</div>
-                        <p>Perfect for most business needs and in-depth analysis.</p>
+                        <p>For datasets up to 2000 rows and in-depth analysis.</p>
                         <button class="btn open-modal-btn" data-plan="Pro">Select Plan & Upload</button>
                     </div>
-                    <div class="pricing-card">
-                        <h3>Enterprise</h3>
-                        <div class="price">Custom</div>
-                        <p>For large-scale projects and custom requirements.</p>
-                        <a href="mailto:contact.apexdata@gmail.com" class="btn">Contact Us</a>
+                    
                     </div>
-                </div>
             </div>
         </section>
 
@@ -478,6 +499,8 @@
             <div id="form-message"></div>
         </div>
     </div>
+
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -489,13 +512,12 @@
             });
         });
 
-        // --------------- MODAL JAVASCRIPT START ---------------
+        // MODAL JAVASCRIPT
         const modal = document.getElementById('uploadModal');
         const openModalBtns = document.querySelectorAll('.open-modal-btn');
         const closeModalBtn = document.querySelector('.close-button');
         const selectedPlanInput = document.getElementById('selectedPlan');
         
-        // Open the modal and set the selected plan
         openModalBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const plan = btn.getAttribute('data-plan');
@@ -506,7 +528,6 @@
             });
         });
 
-        // Close the modal
         const closeModal = () => {
             modal.style.display = 'none';
         }
@@ -523,18 +544,15 @@
         const submitBtn = document.getElementById('submitBtn');
 
         uploadForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
             
-            // --- IMPORTANT: PASTE YOUR N8N WEBHOOK URL HERE ---
             const n8nWebhookUrl = 'YOUR_N8N_WEBHOOK_URL_HERE';
-            // ----------------------------------------------------
 
             if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE') {
                 alert('Please configure the n8n webhook URL in the script.');
                 return;
             }
 
-            // Show loading state
             submitBtn.textContent = 'Uploading...';
             submitBtn.disabled = true;
             messageDiv.style.display = 'none';
@@ -544,22 +562,19 @@
             try {
                 const response = await fetch(n8nWebhookUrl, {
                     method: 'POST',
-                    body: formData, // The browser will automatically set the 'Content-Type' to 'multipart/form-data'
+                    body: formData,
                 });
 
                 if (!response.ok) {
                     throw new Error(`Server responded with status: ${response.status}`);
                 }
 
-                // Assuming n8n returns a success message in JSON format
                 const result = await response.json(); 
                 
-                // Show success message
                 messageDiv.textContent = 'Upload successful! We have received your file and will email your insights shortly.';
                 messageDiv.className = 'message-success';
                 messageDiv.style.display = 'block';
 
-                // Close modal after a few seconds
                 setTimeout(() => {
                     closeModal();
                 }, 4000);
@@ -570,12 +585,10 @@
                 messageDiv.className = 'message-error';
                 messageDiv.style.display = 'block';
             } finally {
-                // Restore button state
                 submitBtn.textContent = 'Upload and Process';
                 submitBtn.disabled = false;
             }
         });
-        // --------------- MODAL JAVASCRIPT END ---------------
 
     </script>
 
