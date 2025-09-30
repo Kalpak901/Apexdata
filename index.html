@@ -3,211 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Data: Strategic Processing & Risk Mitigation</title>
+    <title>APEX DATA: Automated Integrity & Hyper-Speed Analytics</title>
     <style>
         :root {
-            --primary-color: #495057; /* Dark Gray/Professional */
-            --secondary-color: #28a745; /* Green for Guarantee/ROI */
-            --background-color: #f4f6f9; /* Off-White/Clean */
-            --card-bg: #ffffff;
-            --text-color: #212529;
-            --highlight-color: #ffc107; /* Gold */
+            /* Color Palette: Tech / Dark Mode */
+            --bg-color: #121212; /* Very Dark Gray/Black */
+            --text-color: #ffffff; /* White */
+            --primary-accent: #00ffaa; /* Neon Green/Aqua - The "AI" glow */
+            --secondary-accent: #34c759; /* Green - For success/CTA */
+            --card-bg: #1e1e1e; /* Slightly lighter dark gray for depth */
+            --border-color: #333333;
+            --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            font-family: 'Georgia', serif;
-            background-color: var(--background-color);
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            text-align: center;
+            line-height: 1.6;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
+
+        /* --- Header & Navigation --- */
         header {
-            background-color: var(--card-bg);
-            padding: 30px 0;
-            border-bottom: 5px solid var(--primary-color);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header h1 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 2.2em;
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-accent);
+            text-shadow: 0 0 5px rgba(0, 255, 170, 0.5);
         }
-        .pitch {
-            padding: 50px 20px 20px;
-        }
-        .pitch h2 {
-            font-size: 2.8em;
+        .nav a {
             color: var(--text-color);
+            text-decoration: none;
+            margin-left: 30px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .pitch h2 strong {
-            color: var(--secondary-color);
+        .nav a:hover {
+            background-color: var(--border-color);
+            color: var(--primary-accent);
         }
-        .pitch p {
+        .nav .external-link {
+            border: 1px solid var(--primary-accent);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .hero h1 strong {
+            color: var(--primary-accent);
+            border-bottom: 2px solid var(--primary-accent);
+        }
+        .hero p {
+            font-size: 1.5em;
+            color: #ccc;
+            margin-bottom: 40px;
+        }
+
+        /* --- CTA Button --- */
+        .main-cta {
+            background-color: var(--secondary-accent);
+            color: var(--bg-color);
+            padding: 15px 35px;
             font-size: 1.2em;
-            color: #6c757d;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .main-cta:hover {
+            background-color: #38e063;
+            transform: translateY(-2px);
+        }
+
+        /* --- Pricing Grid --- */
+        .pricing-section {
+            padding: 40px 0;
+        }
+        .pricing-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 50px;
+            color: var(--primary-accent);
+            text-align: center;
         }
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-top: 40px;
+            gap: 30px;
         }
-        .card {
+        .pricing-card {
             background-color: var(--card-bg);
-            border: 3px solid #dee2e6;
-            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            transition: border-color 0.3s;
+            position: relative;
         }
-        .card-premium {
-            border-color: var(--highlight-color);
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            text-align: center;
+        .pricing-card:hover {
+            border-color: var(--primary-accent);
         }
-        .card h3 {
-            color: var(--primary-color);
+        .pricing-card h3 {
+            font-size: 1.6em;
             margin-top: 0;
-            text-align: center;
+            color: var(--text-color);
         }
-        .price {
-            font-size: 3em;
+        .price-display {
+            font-size: 3.2em;
+            font-weight: 700;
+            color: var(--secondary-accent);
+            margin: 10px 0;
+        }
+        .price-details {
+            font-size: 1em;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        .price-label {
+            background-color: var(--primary-accent);
+            color: var(--bg-color);
+            padding: 5px 15px;
             font-weight: bold;
-            color: var(--secondary-color);
-            text-align: center;
-            margin: 15px 0;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 15px;
         }
-        .features {
+        .features-list {
             list-style: none;
             padding: 0;
             text-align: left;
+            margin: 20px 0;
         }
-        .features li {
+        .features-list li {
             padding: 8px 0;
-            border-bottom: 1px dashed #eee;
-            color: var(--text-color);
-            font-size: 1.1em;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 0.95em;
         }
-        .features li:before {
-            content: '✓';
-            color: var(--secondary-color);
+        .features-list li::before {
+            content: '»';
+            color: var(--primary-accent);
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 8px;
         }
-        .cta-button {
+        
+        /* --- Urgency Button Styles --- */
+        .urgency-cta {
             display: block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-top: 30px;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 5px;
             font-weight: bold;
-            font-size: 1.1em;
+            text-decoration: none;
             transition: background-color 0.3s;
             text-align: center;
         }
-        .cta-button:hover {
-            background-color: #343a40;
+        .btn-priority {
+            background-color: #dc3545; /* Red for highest urgency */
+            color: white;
         }
-        .nav-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
+        .btn-priority:hover {
+            background-color: #ff4d4d;
         }
-        .highlight-bar {
-            background-color: var(--highlight-color);
-            color: var(--text-color);
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            text-align: center;
+        .btn-rush {
+            background-color: #ffc107; /* Yellow/Orange for rush */
+            color: var(--bg-color);
         }
+        .btn-rush:hover {
+            background-color: #ffcc33;
+        }
+        .btn-standard {
+            background-color: var(--primary-accent);
+            color: var(--bg-color);
+        }
+        .btn-standard:hover {
+            background-color: #33ffbb;
+        }
+        
+        /* --- Footer --- */
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
             padding: 20px 0;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid var(--border-color);
             font-size: 0.8em;
-            color: #6c757d;
+            text-align: center;
+            color: #777;
         }
+        .trust-badge {
+            margin: 20px 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--secondary-accent);
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>APEX DATA ${}^{\text{TM}}$: STRATEGIC PROCESSING</h1>
-            <p>High-Volume, High-Speed Automation for Enterprise-Grade Results</p>
+            <div class="logo">APEX DATA ${}^{\text{TM}}$</div>
+            <nav class="nav">
+                <a href="#pricing">Pricing Slabs</a>
+                <a href="#vault">The Vault Guarantee</a>
+                <a href="data-dash-express.html" class="external-link">DataDash Express</a>
+            </nav>
         </header>
 
-        <nav style="padding: 10px 0;">
-            <a href="index.html" class="nav-link">Go to DataDash Express (Low Volume)</a>
-        </nav>
-
-        <section class="pitch">
-            <h2>**STOP GUESSING.** **START GUARANTEEING.** <strong>RISK-FREE DATA INTEGRITY.</strong></h2>
-            <p>Our E2-Medium Hyper-Focus Engine handles complex data sets up to 20,000 rows, delivering certainty where human analysts introduce risk and delay.</p>
+        <section class="hero">
+            <h1>The **Better Option Than a Freelancer** Forever.</h1>
+            <p><strong>Stop Hiring. Start Automating.</strong> Guaranteed 6-Hour Integrity Audits using Gemini AI and Dedicated Multi-Worker Architecture.</p>
+            <a href="#pricing" class="main-cta">SEE THE PRIORITY SLABS</a>
+            <div class="trust-badge">Backed by GCP Compute Engine & 5-Worker Redundancy</div>
         </section>
 
-        <section class="pricing">
-            <h2>ENTERPRISE TRANSACTIONAL TIERS</h2>
+        <section id="pricing" class="pricing-section">
+            <h2>TRANSACTIONAL SLABS: PRICE & TIME GUARANTEES</h2>
+            
             <div class="pricing-grid">
-                
-                <div class="card">
+
+                <div class="pricing-card">
+                    <span class="price-label">CORE STANDARD</span>
+                    <h3>Standard Tier (2,000 Rows)</h3>
+                    <div class="price-display">$400</div>
+                    <p class="price-details">Standard Cost of Quality Analysis.</p>
+                    <ul class="features-list">
+                        <li>Max 2,000 Rows (Full Data Cleansing)</li>
+                        <li>Basic Anomaly Detection via Gemini</li>
+                        <li>Output: Final CSV/JSON Email Delivery</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_2000_30MIN]" class="urgency-cta btn-priority">30 MIN PRIORITY: $799</a>
+                    <a href="[STRIPE_LINK_2000_2HR]" class="urgency-cta btn-rush">2 HOUR RUSH: $599</a>
+                    <a href="[STRIPE_LINK_2000_48HR]" class="urgency-cta btn-standard">48 HOUR STANDARD: $400</a>
+                </div>
+
+                <div class="pricing-card">
+                    <span class="price-label">PRO VOLUME</span>
                     <h3>Pro Volume (6,000 Rows)</h3>
-                    <p class="details" style="text-align: center;">Routine large-scale reporting & data integrity checks.</p>
-                    <div class="price">$1,749</div>
-                    <p class="details" style="text-align: center;">**Priority SLA: 6 Hours Guaranteed**</p>
-                    <ul class="features">
-                        <li>AI-Driven Cleansing & Formatting</li>
-                        <li>Automated Confidence Score</li>
-                        <li>Secure Download Link</li>
-                        <li>Standard 72-Hour Option: $999</li>
+                    <div class="price-display">$999</div>
+                    <p class="price-details">Best Value for Weekly Reporting Needs.</p>
+                    <ul class="features-list">
+                        <li>Max 6,000 Rows (Parallel Processing)</li>
+                        <li>Automated Confidence Scoring (Lite)</li>
+                        <li>Dedicated E2-Medium Engine Access</li>
                     </ul>
-                    <a href="[STRIPE_LINK_6000_6HR]" class="cta-button">SECURE YOUR AUDIT</a>
+                    <a href="[STRIPE_LINK_6000_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $1,749</a>
+                    <a href="[STRIPE_LINK_6000_24HR]" class="urgency-cta btn-rush">24 HOUR RUSH: $1,399</a>
+                    <a href="[STRIPE_LINK_6000_72HR]" class="urgency-cta btn-standard">72 HOUR STANDARD: $999</a>
                 </div>
 
-                <div class="card card-premium">
-                    <div class="highlight-bar">BEST VALUE FOR VOLUME</div>
-                    <h3>Bulk Batch (12,000 Rows)</h3>
-                    <p class="details" style="text-align: center;">Ideal for major quarterly data reconciliation.</p>
-                    <div class="price">$2,999</div>
-                    <p class="details" style="text-align: center;">**Priority SLA: 12 Hours Guaranteed**</p>
-                    <ul class="features">
-                        <li>✓ Full 12,000-Row Capacity</li>
-                        <li>✓ Automated Confidence Score</li>
-                        <li>✓ **Dedicated Engine Queue Access**</li>
-                        <li>✓ Standard 96-Hour Option: $1,899</li>
-                    </ul>
-                    <a href="[STRIPE_LINK_12000_12HR]" class="cta-button" style="background-color: var(--secondary-color);">PURCHASE NOW (12 HR)</a>
-                </div>
-
-                <div class="card">
+                <div class="pricing-card card-premium" id="vault">
+                    <span class="price-label" style="background-color: #ff0066;">ULTIMATE INTEGRITY</span>
                     <h3>Apex Vault (20,000 Rows)</h3>
-                    <p class="details" style="text-align: center;">The ultimate solution for high-stakes compliance data.</p>
-                    <div class="price">$4,999</div>
-                    <p class="details" style="text-align: center;">**Elite SLA: 6 Hours Guaranteed**</p>
-                    <ul class="features">
-                        <li>✓ 100% Data Integrity Guarantee</li>
-                        <li>✓ **Automated Compliance Report (PDF)**</li>
-                        <li>✓ **Time-Sensitive Secure Download**</li>
-                        <li>✓ **$500 Service Credit Guarantee**</li>
+                    <div class="price-display">$4,999</div>
+                    <p class="price-details">The Highest Guarantee Against Error & Risk.</p>
+                    <ul class="features-list">
+                        <li>Max 20,000 Rows (Full Migration/Audit)</li>
+                        <li>**Automated Compliance Report** (PDF)</li>
+                        <li>**$500 Service Credit Guarantee**</li>
+                        <li>**Time-Sensitive Secure Download Vault**</li>
                     </ul>
-                    <a href="[STRIPE_LINK_20000_6HR]" class="cta-button">ACTIVATE THE VAULT</a>
+                    <a href="[STRIPE_LINK_20000_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $4,999</a>
+                    <a href="[STRIPE_LINK_20000_48HR]" class="urgency-cta btn-rush">48 HOUR RUSH: $3,999</a>
+                    <a href="[STRIPE_LINK_20000_120HR]" class="urgency-cta btn-standard">120 HOUR STANDARD: $2,999</a>
                 </div>
 
             </div>
         </section>
 
         <footer>
-            <p>&copy; 2025 Apex Data Systems. A Leader in Automated Data Integrity. | <a href="[PRIVACY_POLICY_LINK]" class="nav-link">Security & Compliance</a> | <a href="[TERMS_LINK]" class="nav-link">Terms of Service</a></p>
+            <p>&copy; 2025 APEX DATA Systems. All Rights Reserved. Fully Automated, Gemini-Powered Analysis.</p>
+            <p>Portfolio by SVPCET Engineering. Nagpur, India.</p>
         </footer>
     </div>
 </body>
