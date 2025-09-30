@@ -5,29 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX DATA: AI-Powered Business Insights — Boost Decisions in Hours</title>
     <style>
-        /* --- CORE STYLES --- */
+        /* --- CORE STYLES: Guaranteed High Contrast for GitHub Pages --- */
         :root {
-            --bg-color: #0d1117; /* Deep Black */
-            --text-color: #ffffff;
-            --primary-accent: #00ffaa; /* Neon Green/Aqua - AI Glow */
-            --secondary-accent: #007bff; /* Primary Blue for CTAs */
-            --highlight-cta: #dc3545; /* Red/Urgency for Priority buttons */
-            --card-bg: #161b22; /* Slightly Lighter Dark Gray */
-            --border-color: #30363d;
+            --bg-dark: #0f172a; /* Deep Slate Blue */
+            --bg-card: #1e293b; /* Slightly Lighter Card Background */
+            --text-light: #f1f5f9; /* Off-White Text */
+            --accent-primary: #00ffaa; /* Neon Green/Aqua - AI Glow */
+            --accent-secondary: #2563eb; /* Blue for Standard CTAs */
+            --accent-priority: #dc2626; /* Red for Priority/Urgency */
+            --border-subtle: #334155;
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             font-family: var(--font-stack);
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            /* Subtle data background effect */
-            background-image: radial-gradient(at 0% 0%, rgba(0, 255, 170, 0.1) 0%, transparent 50%),
-                              radial-gradient(at 100% 100%, rgba(0, 123, 255, 0.08) 0%, transparent 60%);
-            background-attachment: fixed;
         }
         .container {
             max-width: 1400px;
@@ -38,53 +34,46 @@
         /* --- Global Sections & Typography --- */
         section {
             padding: 80px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        section:last-child {
-            border-bottom: none;
+            border-bottom: 1px solid var(--border-subtle);
         }
         h2 {
             font-size: 2.2em;
             margin-bottom: 50px;
-            color: var(--primary-accent);
+            color: var(--accent-primary);
             text-align: center;
         }
-        h3 {
-            font-size: 1.5em;
-            margin-top: 0;
-            color: var(--text-color);
-        }
-
+        
         /* --- Header & Navigation --- */
         header {
             padding: 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
         }
         .logo {
             font-size: 1.8em;
             font-weight: 700;
-            color: var(--primary-accent);
+            color: var(--accent-primary);
             text-shadow: 0 0 5px rgba(0, 255, 170, 0.5);
         }
         .nav a {
-            color: var(--text-color);
+            color: var(--text-light);
             text-decoration: none;
-            margin-left: 30px;
+            margin-left: 20px;
             padding: 8px 15px;
-            border-radius: 5px;
+            border-radius: 4px;
             transition: color 0.3s, background-color 0.3s;
         }
         .nav a:hover {
-            color: var(--primary-accent);
-            background-color: var(--border-color);
+            color: var(--accent-primary);
+            background-color: var(--bg-card);
         }
         .nav .external-link {
-            border: 1px solid var(--primary-accent);
+            border: 1px solid var(--accent-primary);
         }
-        
-        /* --- Hero Section --- */
+
+        /* --- Hero Section & CTA --- */
         .hero {
             padding: 120px 0;
             text-align: center;
@@ -95,15 +84,15 @@
             line-height: 1.1;
         }
         .hero h1 strong {
-            color: var(--primary-accent);
+            color: var(--accent-primary);
         }
-        .hero .trust-line {
-            font-size: 1.1em;
+        .hero p {
+            font-size: 1.2em;
             color: #aaa;
             margin-bottom: 30px;
         }
         .free-sample-cta {
-            background-color: var(--secondary-accent);
+            background-color: var(--accent-secondary);
             color: white;
             padding: 18px 40px;
             font-size: 1.3em;
@@ -111,39 +100,43 @@
             text-decoration: none;
             border-radius: 8px;
             display: inline-block;
-            margin-top: 20px;
             transition: background-color 0.3s, transform 0.3s;
         }
         .free-sample-cta:hover {
-            background-color: #0056b3;
+            background-color: #1d4ed8;
             transform: scale(1.05);
         }
         .sample-text {
-            color: var(--primary-accent);
+            color: var(--accent-primary);
             margin-top: 10px;
             font-size: 1.1em;
         }
-
-        /* --- Pricing Grid --- */
+        
+        /* --- Pricing Grid & Cards --- */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
         }
         .pricing-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
             border-radius: 10px;
             padding: 30px;
-            text-align: center;
             display: flex;
             flex-direction: column;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .pricing-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.2);
         }
         .price-display {
             font-size: 2.5em;
             font-weight: 700;
-            color: var(--secondary-accent);
+            color: var(--accent-secondary);
             margin: 10px 0 20px;
+            text-align: center;
         }
         .features-list {
             list-style: none;
@@ -153,18 +146,18 @@
         }
         .features-list li {
             padding: 6px 0;
-            border-bottom: 1px dashed var(--border-color);
+            border-bottom: 1px dashed var(--border-subtle);
             font-size: 0.95em;
             text-align: left;
         }
         .features-list li::before {
             content: '»';
-            color: var(--primary-accent);
+            color: var(--accent-primary);
             font-weight: bold;
             margin-right: 8px;
         }
         
-        /* --- CTA Button Styles --- */
+        /* --- CTA Button Styling --- */
         .urgency-cta {
             display: block;
             padding: 12px;
@@ -176,10 +169,126 @@
             text-align: center;
         }
         .btn-priority {
-            background-color: var(--highlight-cta); /* Red - Highest Contrast for Urgency */
+            background-color: var(--accent-priority); 
             color: white;
-            transform: scale(1.02);
-            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
         }
         .btn-rush {
-            background-color: var(--secondary-accent); /* Blue - Second Tier
+            background-color: var(--accent-secondary); 
+            color: white;
+        }
+        .btn-standard {
+            background-color: var(--bg-card);
+            color: #aaa;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* --- Apex Vault Styling --- */
+        #apex-vault-section {
+            grid-column: 1 / -1; 
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        #apex-vault-card {
+            background-color: #3b0e1d; /* Dark Red/Maroon for risk */
+            border: 3px solid var(--accent-priority);
+            box-shadow: 0 0 25px rgba(220, 38, 38, 0.5);
+            padding: 40px;
+            max-width: 900px;
+            text-align: center;
+            border-radius: 15px;
+        }
+        #apex-vault-card .price-display {
+            color: var(--accent-priority);
+            font-size: 4em;
+        }
+
+        /* --- Footer & Contact --- */
+        .contact-section {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        .contact-section label {
+            display: block;
+            margin-top: 15px;
+            text-align: left;
+            color: var(--accent-primary);
+        }
+        .contact-section input, .contact-section select, .contact-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid var(--border-subtle);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border-radius: 4px;
+        }
+        .contact-section button {
+            background-color: var(--accent-secondary);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        footer {
+            padding: 40px 0 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+        footer p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">APEX DATA ${}^{\text{TM}}$</div>
+            <nav class="nav">
+                <a href="#pricing">Pricing Slabs</a>
+                <a href="#usecases">Use Cases</a>
+                <a href="#about">About</a>
+                <a href="data-dash-express.html" class="external-link">DataDash Express (Budget)</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1><strong>AI-Powered Business Insights</strong> from Raw Data **in Just Hours**</h1>
+            <p>Trusted by business owners across **retail, trading, and finance.** Zero Human Error Risk. **Better Option Than a Freelancer** Forever.</p>
+            
+            <a href="[FREE_SAMPLE_WEBHOOK_OR_FORM]" class="free-sample-cta">🎁 TRY FREE 50 ROW SAMPLE</a>
+            <p class="sample-text">Limited free samples per month — reserve yours today.</p>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+            <h2>CHOOSE YOUR SERVICE SLAB: TRANSACTIONAL POWER</h2>
+            
+            <div class="pricing-grid">
+
+                <div class="pricing-card">
+                    <h3>Starter (2,000 Rows)</h3>
+                    <div class="price-display">$399</div>
+                    <p class="price-details">Perfect for startups, pilots, or one-time projects.</p>
+                    <ul class="features-list">
+                        <li>Identify growth bottlenecks, top-performing products, and 2–3 actionable KPIs.</li>
+                        <li>Max 2,000 Rows (Full Data Cleansing)</li>
+                        <li>Basic Anomaly Detection</li>
+                        <li><span style="color: var(--accent-primary);">Monthly Sub: $179 / 4 Reports</span></li>
+                    </ul>
+                    <a href="[STRIPE_LINK_2000_30MIN]" class="urgency-cta btn-priority">30 MIN PRIORITY: $799</a>
+                    <a href="[STRIPE_LINK_2000_2HR]" class="urgency-cta btn-rush">2 HOUR RUSH: $599</a>
+                    <a href="[STRIPE_LINK_2000_48HR]" class="urgency-cta btn-standard">48 HOUR STANDARD: $399</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Advanced (4,500 Rows)</h3>
+                    <div class="price-display">$899</div>
+                    <p class="price-details">Optimal Capacity for Weekly Reporting. Maximize AOV.</p>
+                    <ul class="features-list">
+                        <li>Track revenue drivers, anomalies, and future trends
