@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX DATA: AI-Powered Business Insights — Boost Decisions in Hours</title>
     <style>
-        /* --- CORE STYLES: Guaranteed High Contrast for GitHub Pages --- */
+        /* --- CORE STYLES (High Contrast Dark Theme) --- */
         :root {
-            --bg-dark: #0f172a; /* Deep Slate Blue */
-            --bg-card: #1e293b; /* Slightly Lighter Card Background */
-            --text-light: #f1f5f9; /* Off-White Text */
+            --bg-dark: #0d1117; 
+            --text-light: #ffffff;
             --accent-primary: #00ffaa; /* Neon Green/Aqua - AI Glow */
-            --accent-secondary: #2563eb; /* Blue for Standard CTAs */
+            --accent-secondary: #2563eb; /* Primary Blue for CTAs */
             --accent-priority: #dc2626; /* Red for Priority/Urgency */
-            --border-subtle: #334155;
+            --card-bg: #161b22; 
+            --border-subtle: #30363d;
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
@@ -24,6 +24,9 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            background-image: radial-gradient(at 0% 0%, rgba(0, 255, 170, 0.1) 0%, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
+            background-attachment: fixed;
         }
         .container {
             max-width: 1400px;
@@ -35,6 +38,9 @@
         section {
             padding: 80px 0;
             border-bottom: 1px solid var(--border-subtle);
+        }
+        section:last-child {
+            border-bottom: none;
         }
         h2 {
             font-size: 2.2em;
@@ -86,11 +92,6 @@
         .hero h1 strong {
             color: var(--accent-primary);
         }
-        .hero p {
-            font-size: 1.2em;
-            color: #aaa;
-            margin-bottom: 30px;
-        }
         .free-sample-cta {
             background-color: var(--accent-secondary);
             color: white;
@@ -111,7 +112,7 @@
             margin-top: 10px;
             font-size: 1.1em;
         }
-        
+
         /* --- Pricing Grid & Cards --- */
         .pricing-grid {
             display: grid;
@@ -183,7 +184,7 @@
             border: 1px solid var(--border-subtle);
         }
 
-        /* --- Apex Vault Styling --- */
+        /* --- Apex Vault Styling (Highest Ticket) --- */
         #apex-vault-section {
             grid-column: 1 / -1; 
             margin: 40px auto;
@@ -192,7 +193,7 @@
             width: 100%;
         }
         #apex-vault-card {
-            background-color: #3b0e1d; /* Dark Red/Maroon for risk */
+            background-color: #3b0e1d;
             border: 3px solid var(--accent-priority);
             box-shadow: 0 0 25px rgba(220, 38, 38, 0.5);
             padding: 40px;
@@ -291,4 +292,91 @@
                     <div class="price-display">$899</div>
                     <p class="price-details">Optimal Capacity for Weekly Reporting. Maximize AOV.</p>
                     <ul class="features-list">
-                        <li>Track revenue drivers, anomalies, and future trends
+                        <li>Track revenue drivers, anomalies, and future trends with advanced KPIs.</li>
+                        <li>Max 4,500 Rows (Parallel Processing)</li>
+                        <li>Automated Confidence Scoring (Lite)</li>
+                        <li><span style="color: var(--accent-primary);">Monthly Sub: $299 / 4 Reports</span></li>
+                    </ul>
+                    <a href="[STRIPE_LINK_4500_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $1,599</a>
+                    <a href="[STRIPE_LINK_4500_24HR]" class="urgency-cta btn-rush">24 HOUR RUSH: $1,199</a>
+                    <a href="[STRIPE_LINK_4500_72HR]" class="urgency-cta btn-standard">72 HOUR STANDARD: $899</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Pro Volume (9,000 Rows)</h3>
+                    <div class="price-display">$1,499</div>
+                    <p class="price-details">Serious Analytical Power for Monthly Audits. **Engine 2** Access.</p>
+                    <ul class="features-list">
+                        <li>Track revenue drivers, anomalies, and future trends with advanced KPIs.</li>
+                        <li>Max 9,000 Rows (Extended Parallel Run)</li>
+                        <li>Dedicated Worker Pool Allocation</li>
+                        <li><span style="color: var(--accent-primary);">Monthly Sub: $499 / 4 Reports</span></li>
+                    </ul>
+                    <a href="[STRIPE_LINK_9000_12HR]" class="urgency-cta btn-priority">12 HOUR PRIORITY: $2,499</a>
+                    <a href="[STRIPE_LINK_9000_48HR]" class="urgency-cta btn-rush">48 HOUR RUSH: $1,999</a>
+                    <a href="[STRIPE_LINK_9000_96HR]" class="urgency-cta btn-standard">96 HOUR STANDARD: $1,499</a>
+                </div>
+                
+                 <div class="pricing-card">
+                    <h3>Bulk Batch (15,000 Rows)</h3>
+                    <div class="price-display">$2,299</div>
+                    <p class="price-details">Full Capacity for Data Migration or Quarterly Events. **Engine 2** Access.</p>
+                    <ul class="features-list">
+                        <li>Max 15,000 Rows (Max Capacity Run)</li>
+                        <li>Dedicated E2-Medium Resources</li>
+                        <li>Highest Volume Discount Applied</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_15000_18HR]" class="urgency-cta btn-priority">18 HOUR PRIORITY: $3,499</a>
+                    <a href="[STRIPE_LINK_15000_48HR]" class="urgency-cta btn-rush">48 HOUR RUSH: $2,999</a>
+                    <a href="[STRIPE_LINK_15000_120HR]" class="urgency-cta btn-standard">120 HOUR STANDARD: $2,299</a>
+                </div>
+
+
+            </div>
+            
+            <div id="apex-vault-section">
+                <div id="apex-vault-card">
+                    <h3 style="color: var(--accent-priority);">APEX VAULT: INTEGRITY & COMPLIANCE (20,000 ROWS)</h3>
+                    <div class="price-display">$4,999</div>
+                    <p class="price-details" style="font-size: 1.1em; color: #ccc;">The Highest Level of Automated Risk Mitigation and Data Certainty. **6-Hour Guarantee.**</p>
+                    <ul class="features-list" style="margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        <li>✓ Max 20,000 Rows (Full Enterprise Data Audit)</li>
+                        <li>✓ **Automated Compliance Report** Generated by Gemini</li>
+                        <li>✓ **$500 Service Credit Guarantee** Against Verifiable Error</li>
+                        <li>✓ Time-Sensitive, **Secure Download Vault** (48hr Expiration)</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_20000_6HR_VAULT]" class="urgency-cta btn-priority" style="font-size: 1.5em; padding: 20px; background-color: var(--accent-primary); color: var(--bg-dark);">ACTIVATE THE VAULT (6 HOUR PRIORITY)</a>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="usecases">
+            <h2>WHY APEX DATA? TYPICAL USE CASES</h2>
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <h4>Retail & E-commerce</h4>
+                    <p>Spot top-selling products, predict slow movers, and identify growth bottlenecks in sales and inventory data.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>Finance & Trading</h4>
+                    <p>Catch anomalies in transaction logs, validate compliance data, and instantly audit large historical data sets for risk.</p>
+                </div>
+                <div class="use-case-card">
+                    <h4>SMBs & Startups</h4>
+                    <p>Track core growth metrics (LTV, CAC, AOV) and segment customers without the cost of hiring a full-time analyst.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" style="text-align: center;">
+            <h2>WHAT OUR EARLY USERS SAY</h2>
+            <p style="font-size: 1.2em; color: #777;">Coming soon — real stories from businesses using Apex Data to eliminate data bottlenecks.</p>
+        </section>
+
+
+        <section id="about" style="text-align: center; border: none;">
+            <p style="font-size: 1.3em; color: var(--accent-primary);">**Our mission:** make data-driven decision making accessible to every business, no matter the size.</p>
+            <p style="font-size: 1.1em; color: #aaa;">We never share your data with third parties — **ever**. Your security is paramount.</p>
+            
+            <div class="contact-section" style="max-width: 600px; margin: 30px auto
