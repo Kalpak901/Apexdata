@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX DATA: Automated Integrity & Hyper-Speed Analytics</title>
+    <title>APEX DATA: AI-Powered Business Insights from Raw Data in Just Hours</title>
     <style>
+        /* --- Color Palette: Tech / Dark Mode --- */
         :root {
-            /* Color Palette: Tech / Dark Mode */
-            --bg-color: #121212; /* Very Dark Gray/Black */
-            --text-color: #ffffff; /* White */
-            --primary-accent: #00ffaa; /* Neon Green/Aqua - The "AI" glow */
-            --secondary-accent: #34c759; /* Green - For success/CTA */
-            --card-bg: #1e1e1e; /* Slightly lighter dark gray for depth */
-            --border-color: #333333;
+            --bg-color: #0d1117; /* GitHub Dark Mode Black */
+            --text-color: #ffffff;
+            --primary-accent: #00ffaa; /* Neon Green/Aqua */
+            --secondary-accent: #007bff; /* Primary Blue for CTAs */
+            --highlight-cta: #dc3545; /* Red/Urgency for Priority buttons */
+            --card-bg: #161b22; /* Darker card background */
+            --border-color: #30363d;
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
@@ -23,11 +24,15 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            /* Simulated background for "Financial Data/AI" look */
+            background-image: radial-gradient(at 0% 0%, rgba(0, 255, 170, 0.1) 0%, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(0, 123, 255, 0.08) 0%, transparent 60%);
+            background-attachment: fixed;
         }
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         /* --- Header & Navigation --- */
@@ -50,10 +55,9 @@
             margin-left: 30px;
             padding: 8px 15px;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: color 0.3s, border-color 0.3s;
         }
         .nav a:hover {
-            background-color: var(--border-color);
             color: var(--primary-accent);
         }
         .nav .external-link {
@@ -62,43 +66,52 @@
 
         /* --- Hero Section --- */
         .hero {
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
         }
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 10px;
+            font-size: 3.8em;
+            margin-bottom: 15px;
             line-height: 1.1;
         }
         .hero h1 strong {
             color: var(--primary-accent);
-            border-bottom: 2px solid var(--primary-accent);
         }
         .hero p {
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: #ccc;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
-
-        /* --- CTA Button --- */
-        .main-cta {
+        
+        /* --- FREE SAMPLE CTA --- */
+        .free-sample-cta {
             background-color: var(--secondary-accent);
-            color: var(--bg-color);
-            padding: 15px 35px;
-            font-size: 1.2em;
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3em;
             font-weight: bold;
             text-decoration: none;
             border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
             transition: background-color 0.3s, transform 0.3s;
+            border: 2px solid var(--secondary-accent);
         }
-        .main-cta:hover {
-            background-color: #38e063;
-            transform: translateY(-2px);
+        .free-sample-cta:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: scale(1.05);
         }
+        .sample-text {
+            color: var(--primary-accent);
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+
 
         /* --- Pricing Grid --- */
         .pricing-section {
-            padding: 40px 0;
+            padding: 60px 0;
         }
         .pricing-section h2 {
             font-size: 2.2em;
@@ -108,55 +121,45 @@
         }
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns for volume tiers */
+            gap: 25px;
         }
         .pricing-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 30px;
-            transition: border-color 0.3s;
-            position: relative;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
         }
         .pricing-card:hover {
             border-color: var(--primary-accent);
-        }
-        .pricing-card h3 {
-            font-size: 1.6em;
-            margin-top: 0;
-            color: var(--text-color);
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.2);
         }
         .price-display {
-            font-size: 3.2em;
+            font-size: 2.5em;
             font-weight: 700;
             color: var(--secondary-accent);
-            margin: 10px 0;
+            margin: 10px 0 20px;
         }
         .price-details {
-            font-size: 1em;
+            font-size: 0.9em;
             color: #aaa;
-            margin-bottom: 20px;
-        }
-        .price-label {
-            background-color: var(--primary-accent);
-            color: var(--bg-color);
-            padding: 5px 15px;
-            font-weight: bold;
-            border-radius: 5px;
-            display: inline-block;
             margin-bottom: 15px;
         }
         .features-list {
             list-style: none;
             padding: 0;
-            text-align: left;
             margin: 20px 0;
+            flex-grow: 1; /* Pushes buttons to bottom */
         }
         .features-list li {
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px dashed var(--border-color);
             font-size: 0.95em;
+            text-align: left;
         }
         .features-list li::before {
             content: '»';
@@ -165,11 +168,11 @@
             margin-right: 8px;
         }
         
-        /* --- Urgency Button Styles --- */
+        /* --- CTA Button Styles --- */
         .urgency-cta {
             display: block;
             padding: 12px;
-            margin-top: 15px;
+            margin-top: 10px;
             border-radius: 5px;
             font-weight: bold;
             text-decoration: none;
@@ -177,28 +180,34 @@
             text-align: center;
         }
         .btn-priority {
-            background-color: #dc3545; /* Red for highest urgency */
+            background-color: var(--highlight-cta); /* Red */
             color: white;
+            border: 2px solid var(--highlight-cta);
         }
         .btn-priority:hover {
             background-color: #ff4d4d;
+            border-color: #ff4d4d;
+            transform: scale(1.02);
         }
         .btn-rush {
-            background-color: #ffc107; /* Yellow/Orange for rush */
-            color: var(--bg-color);
+            background-color: var(--secondary-accent); /* Blue */
+            color: white;
+            border: 2px solid var(--secondary-accent);
         }
         .btn-rush:hover {
-            background-color: #ffcc33;
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
         .btn-standard {
-            background-color: var(--primary-accent);
-            color: var(--bg-color);
+            background-color: var(--card-bg);
+            color: #aaa;
+            border: 1px solid var(--border-color);
         }
         .btn-standard:hover {
-            background-color: #33ffbb;
+            background-color: #2a2a2a;
         }
         
-        /* --- Footer --- */
+        /* --- Footer & Contact --- */
         footer {
             margin-top: 60px;
             padding: 20px 0;
@@ -207,13 +216,27 @@
             text-align: center;
             color: #777;
         }
-        .trust-badge {
-            margin: 20px 0;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: var(--secondary-accent);
+        .contact-info {
+            margin-top: 20px;
+            font-size: 1em;
+            color: var(--primary-accent);
+        }
+        .contact-info a {
+            color: var(--primary-accent);
+            text-decoration: none;
         }
 
+        /* --- Apex Vault Card Styling (Highest Ticket) --- */
+        #apex-vault {
+            grid-column: span 2; /* Spans two columns for visibility */
+            margin: 40px auto;
+            transform: scale(1.03);
+            border: 3px solid var(--highlight-cta);
+            box-shadow: 0 0 25px rgba(220, 53, 69, 0.5);
+        }
+        #apex-vault .price-display {
+            color: var(--highlight-cta);
+        }
     </style>
 </head>
 <body>
@@ -222,29 +245,30 @@
             <div class="logo">APEX DATA ${}^{\text{TM}}$</div>
             <nav class="nav">
                 <a href="#pricing">Pricing Slabs</a>
-                <a href="#vault">The Vault Guarantee</a>
+                <a href="#vault">Apex Vault</a>
                 <a href="data-dash-express.html" class="external-link">DataDash Express</a>
             </nav>
         </header>
 
         <section class="hero">
-            <h1>The **Better Option Than a Freelancer** Forever.</h1>
-            <p><strong>Stop Hiring. Start Automating.</strong> Guaranteed 6-Hour Integrity Audits using Gemini AI and Dedicated Multi-Worker Architecture.</p>
-            <a href="#pricing" class="main-cta">SEE THE PRIORITY SLABS</a>
-            <div class="trust-badge">Backed by GCP Compute Engine & 5-Worker Redundancy</div>
+            <h1><strong>AI-Powered Business Insights</strong> from Raw Data **in Just Hours**</h1>
+            <p>The "Better Option Than a Freelancer" Forever. Guaranteed Speed. Zero Human Error Risk.</p>
+            
+            <a href="[FREE_SAMPLE_WEBHOOK_OR_FORM]" class="free-sample-cta">GET FREE 50 ROW SAMPLE ANALYSIS</a>
+            <p class="sample-text">See our 30-minute processing speed live. No obligation.</p>
         </section>
 
         <section id="pricing" class="pricing-section">
-            <h2>TRANSACTIONAL SLABS: PRICE & TIME GUARANTEES</h2>
+            <h2>TRANSACTIONAL SLABS: TIERED URGENCY & VOLUME</h2>
             
             <div class="pricing-grid">
 
                 <div class="pricing-card">
-                    <span class="price-label">CORE STANDARD</span>
-                    <h3>Standard Tier (2,000 Rows)</h3>
+                    <h3>Core Standard (2,000 Rows)</h3>
                     <div class="price-display">$400</div>
-                    <p class="price-details">Standard Cost of Quality Analysis.</p>
+                    <p class="price-details">Standard Cost of Quality Analysis. **Engine 1** Access.</p>
                     <ul class="features-list">
+                        <li>Perfect for startups, pilots, or one-time projects.</li>
                         <li>Max 2,000 Rows (Full Data Cleansing)</li>
                         <li>Basic Anomaly Detection via Gemini</li>
                         <li>Output: Final CSV/JSON Email Delivery</li>
@@ -255,43 +279,41 @@
                 </div>
 
                 <div class="pricing-card">
-                    <span class="price-label">PRO VOLUME</span>
-                    <h3>Pro Volume (6,000 Rows)</h3>
-                    <div class="price-display">$999</div>
-                    <p class="price-details">Best Value for Weekly Reporting Needs.</p>
+                    <h3>Mid-Volume (4,500 Rows)</h3>
+                    <div class="price-display">$899</div>
+                    <p class="price-details">Optimal Capacity for Weekly Reporting. **Engine 2** Access.</p>
                     <ul class="features-list">
-                        <li>Max 6,000 Rows (Parallel Processing)</li>
+                        <li>Max 4,500 Rows (Parallel Processing)</li>
                         <li>Automated Confidence Scoring (Lite)</li>
-                        <li>Dedicated E2-Medium Engine Access</li>
+                        <li>High-Capacity Queue Priority</li>
                     </ul>
-                    <a href="[STRIPE_LINK_6000_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $1,749</a>
-                    <a href="[STRIPE_LINK_6000_24HR]" class="urgency-cta btn-rush">24 HOUR RUSH: $1,399</a>
-                    <a href="[STRIPE_LINK_6000_72HR]" class="urgency-cta btn-standard">72 HOUR STANDARD: $999</a>
+                    <a href="[STRIPE_LINK_4500_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $1,599</a>
+                    <a href="[STRIPE_LINK_4500_24HR]" class="urgency-cta btn-rush">24 HOUR RUSH: $1,199</a>
+                    <a href="[STRIPE_LINK_4500_72HR]" class="urgency-cta btn-standard">72 HOUR STANDARD: $899</a>
                 </div>
 
-                <div class="pricing-card card-premium" id="vault">
-                    <span class="price-label" style="background-color: #ff0066;">ULTIMATE INTEGRITY</span>
-                    <h3>Apex Vault (20,000 Rows)</h3>
-                    <div class="price-display">$4,999</div>
-                    <p class="price-details">The Highest Guarantee Against Error & Risk.</p>
+                <div class="pricing-card">
+                    <h3>Pro Volume (9,000 Rows)</h3>
+                    <div class="price-display">$1,499</div>
+                    <p class="price-details">Serious Analytical Power for Monthly Audits. **Engine 2** Access.</p>
                     <ul class="features-list">
-                        <li>Max 20,000 Rows (Full Migration/Audit)</li>
-                        <li>**Automated Compliance Report** (PDF)</li>
-                        <li>**$500 Service Credit Guarantee**</li>
-                        <li>**Time-Sensitive Secure Download Vault**</li>
+                        <li>Max 9,000 Rows (Extended Parallel Run)</li>
+                        <li>Dedicated Worker Pool Allocation</li>
+                        <li>High-Reliability SLA Tracking</li>
                     </ul>
-                    <a href="[STRIPE_LINK_20000_6HR]" class="urgency-cta btn-priority">6 HOUR PRIORITY: $4,999</a>
-                    <a href="[STRIPE_LINK_20000_48HR]" class="urgency-cta btn-rush">48 HOUR RUSH: $3,999</a>
-                    <a href="[STRIPE_LINK_20000_120HR]" class="urgency-cta btn-standard">120 HOUR STANDARD: $2,999</a>
+                    <a href="[STRIPE_LINK_9000_12HR]" class="urgency-cta btn-priority">12 HOUR PRIORITY: $2,499</a>
+                    <a href="[STRIPE_LINK_9000_48HR]" class="urgency-cta btn-rush">48 HOUR RUSH: $1,999</a>
+                    <a href="[STRIPE_LINK_9000_96HR]" class="urgency-cta btn-standard">96 HOUR STANDARD: $1,499</a>
                 </div>
-
-            </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 APEX DATA Systems. All Rights Reserved. Fully Automated, Gemini-Powered Analysis.</p>
-            <p>Portfolio by SVPCET Engineering. Nagpur, India.</p>
-        </footer>
-    </div>
-</body>
-</html>
+                
+                 <div class="pricing-card">
+                    <h3>Bulk Batch (15,000 Rows)</h3>
+                    <div class="price-display">$2,299</div>
+                    <p class="price-details">Full Capacity for Data Migration or Quarterly Events. **Engine 2** Access.</p>
+                    <ul class="features-list">
+                        <li>Max 15,000 Rows (Max Capacity Run)</li>
+                        <li>Dedicated E2-Medium Resources</li>
+                        <li>Highest Volume Discount Applied</li>
+                    </ul>
+                    <a href="[STRIPE_LINK_15000_18HR]" class="urgency-cta btn-priority">18 HOUR PRIORITY: $3,499</a>
+                    <a href="[STRIPE_LINK_15000
