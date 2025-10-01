@@ -1,567 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Data - The AI-Powered Analytics Platform</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --primary-hover-color: #0056b3;
-            --secondary-color: #e9ecef;
-            --background-color: #f8f9fa;
-            --text-color: #212529;
-            --text-color-light: #6c757d;
-            --card-bg-color: #ffffff;
-            --border-color: #dee2e6;
-            --success-color: #28a745;
-            --error-color: #dc3545;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--text-color); line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .top-banner {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            text-align: center;
-            padding: 0.75rem 2rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 1001;
-        }
-        .top-banner-close {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            cursor: pointer;
-            line-height: 1;
-            color: var(--text-color-light);
-        }
-        header { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(10px); 
-            padding: 1rem 0; 
-            position: sticky;
-            top: 0;
-            width: 100%; 
-            z-index: 1000; 
-            border-bottom: 1px solid var(--border-color);
-            transition: top 0.3s;
-        }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
-        .logo i { color: var(--primary-color); }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { color: var(--text-color); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
-        nav ul li a:hover { color: var(--primary-color); }
-        .hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(4, 12, 24, 0.6), rgba(4, 12, 24, 0.6)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover; }
-        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; color: #fff; }
-        .hero-content h1 span { color: var(--primary-color); }
-        .hero-content .sub-headline { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; color: #e0e0e0; font-style: italic;}
-        .btn { display: inline-block; padding: 14px 32px; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; cursor: pointer; border: none; background-image: linear-gradient(to right, #0062E6, #33AEFF); box-shadow: 0 4px 15px 0 rgba(0, 118, 255, 0.35); }
-        .btn:hover { background-image: linear-gradient(to right, #33AEFF, #0062E6); transform: translateY(-3px); box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.5); }
-        section { padding: 100px 0; }
-        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; font-weight: 600; }
-        .how-it-works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .step-card, .faq-item { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .step-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
-        .step-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        #deliverables { background-color: var(--secondary-color); }
-        .deliverables-gallery { border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; margin-top: 2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .deliverables-gallery img { width: 100%; height: auto; display: block; }
-        .sample-report-cta { text-align: center; margin-top: 3rem; }
-        .sample-report-cta p { margin-bottom: 1rem; font-size: 1.1rem; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-        .pricing-card { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
-        .pricing-card.highlight { border-color: var(--primary-color); border-width: 2px; }
-        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
-        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
-        .price { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--primary-color); }
-        .pricing-card p { font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 1.5rem; flex-grow: 1; }
-        .delivery-time { font-weight: 600; color: var(--text-color-light); margin-bottom: 1.5rem; display: block; }
-        .pricing-card .btn { width: 100%; margin-top: auto; }
-        .faq-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
-        .faq-item { text-align: left; border-left: 4px solid var(--primary-color); }
-        .faq-item h3 { margin-bottom: 0.5rem; }
-        #about { background-color: var(--secondary-color); }
-        #about p { text-align: center; max-width: 700px; margin: 0 auto; font-size: 1.2rem; line-height: 1.8; }
-        .contact-form-container { max-width: 700px; margin: 0 auto; background: var(--card-bg-color); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 1.5rem; text-align: left; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background-color: var(--background-color); border: 1px solid var(--border-color); border-radius: 5px; color: var(--text-color); font-family: 'Poppins', sans-serif; font-size: 1rem; }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        footer { text-align: center; padding: 3rem 0; background-color: #343a40; border-top: 1px solid var(--border-color); color: #fff; }
-        .footer-content { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 2rem; max-width: 600px; margin: 0 auto 2rem auto; }
-        .footer-col h4 { margin-bottom: 1rem; color: #fff; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 0.5rem; }
-        .footer-col a { color: #e0e0e0; text-decoration: none; }
-        .footer-col a:hover { color: var(--primary-color); }
-        .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background-color: var(--card-bg-color); margin: auto; padding: 30px; border: 1px solid var(--border-color); border-radius: 10px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; }
-        .close-button:hover, .close-button:focus { color: var(--text-color); text-decoration: none; cursor: pointer; }
-        #uploadForm .form-group { margin-bottom: 1.5rem; text-align: left; }
-        #uploadForm textarea { resize: vertical; min-height: 120px; }
-        @media (max-width: 992px) { .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } }
-        @media (max-width: 768px) { .hero-content h1 { font-size: 2.5rem; } nav ul { display: none; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apex Data</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #f9fafb; color: #333;}
+    header {background: linear-gradient(90deg,#2d3748,#1a202c); color: #fff; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center;}
+    .logo {font-size: 1.4rem; font-weight: 700; letter-spacing: 1px;}
+    .hero {text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg,#edf2f7,#fff);}
+    .hero h1 {font-size: 2.5rem; margin-bottom: 1rem;}
+    .hero p {font-size: 1.2rem; color: #555;}
+    .cta-btn {background: #3182ce; color: #fff; border: none; padding: 0.8rem 1.6rem; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.2s;}
+    .cta-btn:hover {background: #2b6cb0;}
+    .pricing {padding: 4rem 2rem; background: #fff; text-align: center;}
+    .pricing h2 {font-size: 2rem; margin-bottom: 2rem;}
+    .pricing-grid {display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;}
+    .price-card {background: #f7fafc; border-radius: 12px; padding: 2rem; width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
+    .price-card h3 {margin: 0.5rem 0;}
+    .price-card p {color: #555;}
+    .demo {padding: 4rem 2rem; text-align: center; background: #edf2f7;}
+    .demo img {max-width: 90%; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);}
+    .trust {padding: 2rem; background: #fff; text-align: center;}
+    .trust img {height: 40px; margin: 0 1rem; opacity: 0.8;}
+    .faq, .about, .contact {padding: 4rem 2rem; max-width: 900px; margin: auto;}
+    footer {background: #1a202c; color: #ccc; text-align: center; padding: 2rem;}
+    input, textarea {width: 100%; padding: 0.7rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 6px;}
+    form button {margin-top: 1rem; background: #3182ce; color: #fff; border: none; padding: 0.7rem 1.2rem; border-radius: 6px; cursor: pointer;}
+    form button:hover {background: #2b6cb0;}
+  </style>
 </head>
 <body>
+  <header>
+    <div class="logo">⚡ ApexData</div>
+    <nav><button class="cta-btn">Get Started</button></nav>
+  </header>
 
-    <div class="top-banner" id="topBanner">
-        Save <strong>days</strong> of data analysis, get insights in <strong>hours</strong> with the Apex Data Platform.
-        <span class="top-banner-close" id="closeBanner">&times;</span>
+  <section class="hero">
+    <h1>Data Insights, Simplified</h1>
+    <p>Upload your data. Get actionable insights instantly. No hassle. No complexity.</p>
+    <button class="cta-btn">Try Now (Coming Soon)</button>
+  </section>
+
+  <section class="trust">
+    <p>Trusted by professionals worldwide</p>
+    <div>
+      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+1" alt="Logo1"/>
+      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+2" alt="Logo2"/>
+      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+3" alt="Logo3"/>
     </div>
+  </section>
 
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo"><i class="fas fa-chart-line"></i> Apex Data</a>
-            <ul>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#deliverables">Demo</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h1>The AI Analytics Platform <span>for Actionable Business Insights</span></h1>
-                <p class="sub-headline">Trusted by professionals in retail, trading, and finance.</p>
-                <a href="#pricing" class="btn">View Plans</a>
-            </div>
-        </section>
-
-        <section id="how-it-works">
-            <div class="container">
-                <h2 class="section-title">From Data to Decision in 3 Steps</h2>
-                <div class="how-it-works-grid">
-                    <div class="step-card">
-                        <i class="fas fa-mouse-pointer"></i>
-                        <h3>1. Select Your Capacity</h3>
-                        <p>Choose the plan that matches your data size and desired processing speed.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>2. Upload to the Platform</h3>
-                        <p>Submit your data file to our secure and encrypted processing engine.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>3. Get Your Automated Report</h3>
-                        <p>Receive a comprehensive, professional report generated by our platform.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="deliverables">
-            <div class="container">
-                <h2 class="section-title">Explore the Platform's Output</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">Our platform transforms raw numbers into a clear, actionable report. Explore a sample of our interactive dashboard below.</p>
-                <div class="deliverables-gallery">
-                    <img src="https://placehold.co/1200x650/e9ecef/212529?text=Interactive+Dashboard+Demo+Space" alt="Demo Dashboard Space">
-                </div>
-                <div class="sample-report-cta">
-                    <p>Want a closer look? Download a complete sample report in PDF format.</p>
-                    <a href="#" class="btn">Download Sample Report (PDF)</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="security">
-            <div class="container">
-                <h2 class="section-title">An Enterprise-Grade Security Promise</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">
-                    Your data is protected with end-to-end encryption, processed on Google Cloud's secure infrastructure, and permanently deleted 24 hours after your report is delivered.
-                </p>
-                <div class="how-it-works-grid">
-                    <div class="step-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Data Encryption</h3>
-                        <p>All data is encrypted both in transit (using TLS) and at rest on our secure servers.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-trash-alt"></i>
-                        <h3>Secure Deletion</h3>
-                        <p>Our platform is designed to permanently delete your uploaded data 24 hours after report generation.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-file-signature"></i>
-                        <h3>Strict Confidentiality</h3>
-                        <p>Our platform will never share, sell, or view your data for any purpose other than generating your insights.</p>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="privacy.html" style="color: var(--primary-color);">Read our full Privacy & Data Handling Policy</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="pricing">
-            <div class="container">
-                <h2 class="section-title">Select Your Plan</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">
-                    Choose the right capacity for your needs. Our platform offers tiered processing speeds for urgent projects.
-                </p>
-
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Free Sample</h3>
-                        <div class="price">$0</div>
-                        <p>Up to <strong>50 rows</strong>. A risk-free way to experience our platform.</p>
-                        <span class="delivery-time">"In just a few minutes"</span>
-                        <button class="btn open-modal-btn" data-plan="Free Sample">🎯 Try Free Sample</button>
-                    </div>
-
-                    <div class="pricing-card">
-                        <h3>Starter</h3>
-                        <div class="price">$399</div>
-                        <p>Up to <strong>2,000 rows</strong>. Perfect for pilots or one-time projects.</p>
-                        <span class="delivery-time">Base: 48 Hour Delivery</span>
-                        <button class="btn open-modal-btn" data-plan="Starter">🚀 Select Plan</button>
-                    </div>
-
-                    <div class="pricing-card highlight">
-                        <h3>Advanced</h3>
-                        <div class="price">$899</div>
-                        <p>Up to <strong>4,500 rows</strong>. Optimal for weekly business analysis.</p>
-                        <span class="delivery-time">Base: 72 Hour Delivery</span>
-                        <button class="btn open-modal-btn" data-plan="Advanced">⚡ Unlock Insights</button>
-                    </div>
-
-                    <div class="pricing-card">
-                        <h3>Pro Volume</h3>
-                        <div class="price">$1,499</div>
-                        <p>Up to <strong>9,000 rows</strong>. Serious power for monthly audits.</p>
-                        <span class="delivery-time">Base: 96 Hour Delivery</span>
-                        <button class="btn open-modal-btn" data-plan="Pro Volume">⚡ Get Full Report</button>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <h3>Bulk Batch</h3>
-                        <div class="price">$2,299</div>
-                        <p>Up to <strong>15,000 rows</strong>. For data migration or quarterly events.</p>
-                        <span class="delivery-time">Base: 120 Hour Delivery</span>
-                        <button class="btn open-modal-btn" data-plan="Bulk Batch">⚡ Get Bulk Report</button>
-                    </div>
-
-                    <div class="pricing-card">
-                        <h3>Apex Vault</h3>
-                        <div class="price">$4,999+</div>
-                        <p>Up to <strong>20,000 rows</strong>. Integrity, Compliance & $500 Guarantee.</p>
-                        <span class="delivery-time">Priority Support</span>
-                        <a href="#contact" class="btn">Contact Sales</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3>What file formats does the platform support?</h3>
-                        <p>Our platform currently supports .csv, .xlsx (Excel), and .json files. If you have another format, please contact us first.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How does the platform handle data privacy?</h3>
-                        <p>Your data is encrypted at all times and permanently deleted from our systems 24 hours after your report is generated. You can read our full <a href="privacy.html">Privacy Policy</a> for more details.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Can I request specific metrics or KPIs?</h3>
-                        <p>Yes! All paid plans include the option to specify custom metrics and requirements in the upload form. Our AI engine will focus the analysis on your specific needs.</p>
-                    </div>
-                     <div class="faq-item">
-                        <h3>What is your refund policy?</h3>
-                        <p>Due to the automated nature of our platform, we do not offer refunds once processing has begun. However, if you are unsatisfied with your report, please contact us and we will work with you to make it right.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="about">
-             <div class="container">
-                <h2 class="section-title">About Apex Data</h2>
-                <p>The Apex Data platform was built by data engineers and AI enthusiasts passionate about turning raw data into clarity. We believe powerful insights shouldn't take days to uncover.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Get in Touch</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">Have a question about an enterprise plan or a custom project? Send us a message!</p>
-                <div class="contact-form-container">
-                    <form action="https://formspree.io/f/YOUR_UNIQUE_CODE" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width:100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#pricing">Plans & Pricing</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:contact.apexdata@gmail.com">Email Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <p>Copyright &copy; 2025 Apex Data</p>
-        </div>
-    </footer>
-    
-    <div id="uploadModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 id="modalTitle" style="margin-bottom: 1.5rem;">Upload Your Data</h2>
-            <form id="uploadForm">
-                <input type="hidden" id="selectedPlan" name="plan">
-                <input type="hidden" id="finalPrice" name="price">
-                <input type="hidden" id="finalUrgency" name="urgency">
-                <input type="hidden" id="paymentUrl" name="paymentUrl">
-
-                <div class="form-group">
-                    <label for="clientEmail">Your Email Address</label>
-                    <input type="email" id="clientEmail" name="email" placeholder="We'll send the results here" required>
-                </div>
-
-                <div class="form-group" id="urgencyContainer">
-                    <label for="urgencySelect">Select Urgency</label>
-                    <select id="urgencySelect" name="urgencySelection">
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="dataFile">Data File</label>
-                    <input type="file" id="dataFile" name="file" accept=".csv, .xlsx, .json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="requirements">Specific Requirements or Metrics (Optional)</label>
-                    <textarea id="requirements" name="requirements" placeholder="e.g., 'Analyze the correlation between ad spend and user signups.'"></textarea>
-                </div>
-                
-                <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Proceed</button>
-            </form>
-            <div id="form-message"></div>
-        </div>
+  <section class="pricing">
+    <h2>Choose Your Plan</h2>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Basic</h3>
+        <p><strong>$399</strong> / report</p>
+        <p>Quick insights for small datasets.</p>
+        <button class="cta-btn">Coming Soon</button>
+      </div>
+      <div class="price-card" style="border:2px solid #3182ce;">
+        <h3>Standard</h3>
+        <p><strong>$899</strong> / report</p>
+        <p>Deeper insights with advanced analysis.</p>
+        <button class="cta-btn">Coming Soon</button>
+      </div>
+      <div class="price-card">
+        <h3>Premium</h3>
+        <p><strong>$1499</strong> / report</p>
+        <p>Enterprise-grade insights & support.</p>
+        <button class="cta-btn">Coming Soon</button>
+      </div>
     </div>
+  </section>
 
-    <script>
-        // --- DATA STRUCTURE FOR DYNAMIC SLABS ---
-        const PLAN_OPTIONS = {
-            'Starter': {
-                basePrice: 399,
-                slabs: [
-                    { time: '30 MIN PRIORITY', price: 799, url: '[STRIPE_LINK_1]' },
-                    { time: '2 HOUR RUSH', price: 599, url: '[STRIPE_LINK_2]' },
-                    { time: '48 HOUR STANDARD', price: 399, url: '[STRIPE_LINK_3]' }
-                ]
-            },
-            'Advanced': {
-                basePrice: 899,
-                slabs: [
-                    { time: '6 HOUR PRIORITY', price: 1599, url: '[STRIPE_LINK_4]' },
-                    { time: '24 HOUR RUSH', price: 1199, url: '[STRIPE_LINK_5]' },
-                    { time: '72 HOUR STANDARD', price: 899, url: '[STRIPE_LINK_6]' }
-                ]
-            },
-            'Pro Volume': {
-                basePrice: 1499,
-                slabs: [
-                    { time: '12 HOUR PRIORITY', price: 2499, url: '[STRIPE_LINK_7]' },
-                    { time: '48 HOUR RUSH', price: 1999, url: '[STRIPE_LINK_8]' },
-                    { time: '96 HOUR STANDARD', price: 1499, url: '[STRIPE_LINK_9]' }
-                ]
-            },
-            'Bulk Batch': {
-                 basePrice: 2299,
-                 slabs: [
-                    { time: '18 HOUR PRIORITY', price: 3499, url: '[STRIPE_LINK_10]' },
-                    { time: '48 HOUR RUSH', price: 2999, url: '[STRIPE_LINK_11]' },
-                    { time: '120 HOUR STANDARD', price: 2299, url: '[STRIPE_LINK_12]' }
-                 ]
-            },
-            'Free Sample': {
-                basePrice: 0,
-                slabs: [{ time: 'Free Sample', price: 0, url: 'FREE' }]
-            }
-        };
+  <section class="demo">
+    <h2>See It In Action</h2>
+    <img src="https://dummyimage.com/800x400/ddd/555&text=Sample+Dashboard+Preview" alt="Demo dashboard"/>
+  </section>
 
-        // --- MODAL CONTROL LOGIC ---
-        const modal = document.getElementById('uploadModal');
-        const openModalBtns = document.querySelectorAll('.open-modal-btn');
-        const closeModalBtn = document.querySelector('.close-button');
-        
-        const selectedPlanInput = document.getElementById('selectedPlan');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const finalUrgencyInput = document.getElementById('finalUrgency');
-        const paymentUrlInput = document.getElementById('paymentUrl');
-        
-        const urgencyContainer = document.getElementById('urgencyContainer');
-        const urgencySelect = document.getElementById('urgencySelect');
-        
-        const modalTitle = document.getElementById('modalTitle');
-        const submitBtn = document.getElementById('submitBtn');
-        const uploadForm = document.getElementById('uploadForm');
+  <section class="faq">
+    <h2>FAQ</h2>
+    <p><strong>Q:</strong> How do I get my report? <br><strong>A:</strong> Upload your data, we process it, and deliver insights securely.</p>
+    <p><strong>Q:</strong> Is my data safe? <br><strong>A:</strong> Absolutely. We use enterprise-grade encryption and privacy-first practices.</p>
+  </section>
 
-        const populateUrgencyDropdown = (plan) => {
-            const options = PLAN_OPTIONS[plan];
-            urgencySelect.innerHTML = ''; // Clear existing options
-            
-            options.slabs.forEach((slab, index) => {
-                const option = document.createElement('option');
-                option.value = index; // Use index to reference the slab object
-                option.textContent = `${slab.time} - $${slab.price}`;
-                urgencySelect.appendChild(option);
-            });
-            
-            // Set initial values from the first (default) slab
-            updateModalPrice(plan, 0); 
-        };
+  <section class="about">
+    <h2>About ApexData</h2>
+    <p>We believe data analysis should be simple, fast, and accessible. ApexData provides professional-grade insights for businesses of every size.</p>
+  </section>
 
-        const updateModalPrice = (plan, slabIndex) => {
-            const slab = PLAN_OPTIONS[plan].slabs[slabIndex];
-            finalPriceInput.value = slab.price;
-            finalUrgencyInput.value = slab.time;
-            paymentUrlInput.value = slab.url;
-            submitBtn.textContent = `Proceed to Payment ($${slab.price})`;
-        };
+  <section class="contact">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required/>
+      <input type="email" name="email" placeholder="Your Email" required/>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-        openModalBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const plan = btn.getAttribute('data-plan');
-                
-                selectedPlanInput.value = plan;
-                modalTitle.textContent = `Configure Your ${plan} Report`;
-
-                if (plan === 'Free Sample') {
-                    urgencyContainer.style.display = 'none';
-                    finalPriceInput.value = 0;
-                    finalUrgencyInput.value = 'N/A';
-                    paymentUrlInput.value = 'FREE';
-                    submitBtn.textContent = 'Claim Free Report';
-                } else {
-                    urgencyContainer.style.display = 'block';
-                    populateUrgencyDropdown(plan);
-                    urgencySelect.onchange = () => updateModalPrice(plan, urgencySelect.value);
-                }
-                
-                modal.style.display = 'flex';
-                uploadForm.reset();
-                document.getElementById('form-message').style.display = 'none';
-            });
-        });
-
-        // --- GENERAL MODAL & SCRIPT LOGIC ---
-        const closeModal = () => { modal.style.display = 'none'; }
-        closeModalBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => { if (event.target == modal) { closeModal(); } });
-
-        const messageDiv = document.getElementById('form-message');
-
-        uploadForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const n8nWebhookUrl = 'YOUR_N8N_WEBHOOK_URL_HERE';
-            const finalPaymentUrl = paymentUrlInput.value;
-
-            if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE' || (finalPaymentUrl.includes('[STRIPE_LINK') && finalPaymentUrl !== 'FREE')) {
-                alert('CRITICAL: Please configure Stripe links and n8n webhook URL in the script.');
-                return;
-            }
-
-            submitBtn.textContent = 'Uploading...';
-            submitBtn.disabled = true;
-            
-            const formData = new FormData(uploadForm);
-            
-            try {
-                const response = await fetch(n8nWebhookUrl, { method: 'POST', body: formData });
-                if (!response.ok) throw new Error(`Server responded with status: ${response.status}`);
-                
-                if (finalPaymentUrl === 'FREE') {
-                    messageDiv.textContent = 'Upload successful! Your free report will be emailed in a few minutes.';
-                    messageDiv.className = 'message-success'; 
-                    messageDiv.style.display = 'block';
-                    setTimeout(closeModal, 4000);
-                } else {
-                    window.location.href = finalPaymentUrl;
-                }
-            } catch (error) {
-                messageDiv.textContent = 'An error occurred during upload. Please try again.';
-                messageDiv.className = 'message-error';
-                messageDiv.style.display = 'block';
-                console.error('Upload Error:', error);
-            } finally {
-                if (finalPaymentUrl !== 'FREE') { // Only re-enable if it's not a successful free submission
-                    submitBtn.textContent = `Proceed to Payment ($${finalPriceInput.value})`;
-                    submitBtn.disabled = false;
-                }
-            }
-        });
-
-        document.getElementById('closeBanner').addEventListener('click', function() {
-            document.getElementById('topBanner').style.display = 'none';
-            document.querySelector('header').style.top = '0';
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-    </script>
-    
+  <footer>
+    <p>© 2025 ApexData. All rights reserved.</p>
+  </footer>
 </body>
 </html>
-
-
