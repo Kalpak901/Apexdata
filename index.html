@@ -73,6 +73,7 @@
         .btn:hover { background-image: linear-gradient(to right, #33AEFF, #0062E6); transform: translateY(-3px); box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.5); }
         section { padding: 100px 0; }
         .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; font-weight: 600; }
+        .how-it-works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
         .step-card, .faq-item { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .step-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
         .step-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
@@ -83,14 +84,14 @@
         .sample-report-cta p { margin-bottom: 1rem; font-size: 1.1rem; }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
         .pricing-card { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
-        .pricing-card.highlight { border-color: var(--primary-color); border-width: 2px; transform: scale(1.02); }
+        .pricing-card.highlight { border-color: var(--primary-color); border-width: 2px; }
         .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
         .pricing-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
         .price { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--primary-color); }
         .pricing-card p { font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 1.5rem; flex-grow: 1; }
         .delivery-time { font-weight: 600; color: var(--primary-color); margin-bottom: 1.5rem; display: block; }
         .pricing-card .btn { width: 100%; margin-top: auto; }
-        .faq-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        .faq-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
         .faq-item { text-align: left; border-left: 4px solid var(--primary-color); }
         .faq-item h3 { margin-bottom: 0.5rem; }
         #about { background-color: var(--secondary-color); }
@@ -180,7 +181,8 @@
                     <p>Want a closer look? Download a complete sample report in PDF format.</p>
                     <a href="#" class="btn">Download Sample Report (PDF)</a>
                 </div>
-            </section>
+            </div>
+        </section>
 
         <section id="security">
             <div class="container">
@@ -219,16 +221,14 @@
                 </p>
 
                 <div class="pricing-grid">
-                    <!-- Free Sample Card -->
                     <div class="pricing-card">
                         <h3>Free Sample</h3>
                         <div class="price">$0</div>
                         <p>Up to <strong>50 rows</strong>. A risk-free way to experience the power of our platform.</p>
                         <span class="delivery-time">"In just a few minutes"</span>
-                        <button class="btn open-modal-btn" data-plan="Free Sample">🎯 Try Free Sample</button>
+                        <button class="btn open-modal-btn" data-plan="Free Sample">🎯 Try the Platform Free</button>
                     </div>
 
-                    <!-- Starter Card -->
                     <div class="pricing-card">
                         <h3>Starter</h3>
                         <div class="price">$399</div>
@@ -237,7 +237,6 @@
                         <button class="btn open-modal-btn" data-plan="Starter">🚀 Select Plan</button>
                     </div>
 
-                    <!-- Advanced Card -->
                     <div class="pricing-card highlight">
                         <h3>Advanced</h3>
                         <div class="price">$899</div>
@@ -246,13 +245,28 @@
                         <button class="btn open-modal-btn" data-plan="Advanced">⚡ Unlock Insights</button>
                     </div>
 
-                    <!-- Pro Volume Card -->
                     <div class="pricing-card">
                         <h3>Pro Volume</h3>
                         <div class="price">$1,499</div>
                         <p>Up to <strong>9,000 rows</strong>. Serious power for monthly audits.</p>
                         <span class="delivery-time">96 Hour Delivery</span>
                         <button class="btn open-modal-btn" data-plan="Pro Volume">⚡ Get Full Report</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3>Bulk Batch</h3>
+                        <div class="price">$2,299</div>
+                        <p>Up to <strong>15,000 rows</strong>. For data migration or quarterly events.</p>
+                        <span class="delivery-time">120 Hour Delivery</span>
+                        <button class="btn open-modal-btn" data-plan="Bulk Batch">⚡ Get Bulk Report</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3>Apex Vault</h3>
+                        <div class="price">$4,999</div>
+                        <p>Up to <strong>20,000 rows</strong>. Integrity, Compliance & $500 Guarantee.</p>
+                        <span class="delivery-time">6 HOUR PRIORITY</span>
+                        <a href="#contact" class="btn">Contact Sales</a>
                     </div>
                 </div>
             </div>
@@ -408,6 +422,8 @@
                 }
                 
                 modal.style.display = 'flex';
+                uploadForm.reset();
+                document.getElementById('form-message').style.display = 'none';
             });
         });
 
@@ -446,22 +462,24 @@
                 
                 // For all plans (including free), show a success message. The backend will handle payment links.
                 messageDiv.textContent = 'Upload successful! Please check your email for confirmation and next steps.';
-                messageDiv.className = 'message-success'; // A custom class for styling success
+                messageDiv.className = 'message-success'; 
                 messageDiv.style.display = 'block';
 
                 setTimeout(() => {
                     closeModal();
-                    uploadForm.reset(); // Clear the form
                 }, 5000);
 
             } catch (error) {
                 messageDiv.textContent = 'An error occurred during upload. Please try again.';
-                messageDiv.className = 'message-error'; // A custom class for styling errors
+                messageDiv.className = 'message-error'; 
                 messageDiv.style.display = 'block';
                 console.error('Upload Error:', error);
             } finally {
-                submitBtn.textContent = 'Upload and Process';
-                submitBtn.disabled = false;
+                // Do not re-enable the button immediately on success, to prevent double-submission.
+                if (messageDiv.className !== 'message-success') {
+                    submitBtn.textContent = 'Upload and Process';
+                    submitBtn.disabled = false;
+                }
             }
         });
     </script>
