@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -438,6 +439,12 @@
                 { time: '48 HOUR RUSH', price: 2999, url: '[STRIPE_LINK_15000_48HR]' },
                 { time: '120 HOUR STANDARD', price: 2299, url: '[STRIPE_LINK_15000_120HR]' }
             ],
+            'Apex Vault': [
+                // Apex Vault 6HR Priority now correctly links to #contact, but we keep the structure for display
+                { time: '6 HOUR PRIORITY', price: 4999, url: '#contact' }, 
+                { time: '48 HOUR RUSH', price: 3999, url: '[STRIPE_LINK_20000_48HR_VAULT]' },
+                { time: '120 HOUR STANDARD', price: 2999, url: '[STRIPE_LINK_20000_120HR_VAULT]' }
+            ],
             'Free Sample': [
                 { time: 'Free Sample', price: 0, url: '[STRIPE_LINK_FREE_SAMPLE]' }
             ]
@@ -460,7 +467,7 @@
             
             slabs.forEach((slab, index) => {
                 const option = document.createElement('option');
-                option.value = slab.url; // Use URL as the value
+                option.value = slab.url; 
                 option.textContent = `${slab.time}: $${slab.price.toLocaleString('en-US')}`;
                 // Set the default payment URL to the first slab
                 if (index === 0) {
@@ -480,21 +487,28 @@
             btn.addEventListener('click', () => {
                 const plan = btn.getAttribute('data-plan');
                 
-                // If it's a contact-sales plan (Apex Vault), redirect immediately
+                // Special handling for Free Sample and Apex Vault (no dynamic price selection needed for these)
+                if (plan === 'Free Sample') {
+                     selectedPlanInput.value = plan;
+                     populateUrgencySlabs(plan);
+                     urgencySelect.parentNode.style.display = 'none';
+                     submitBtn.textContent = 'Claim Free Report';
+                     modal.style.display = 'flex';
+                     return;
+                }
+                
                 if (plan === 'Apex Vault') {
+                    // This logic handles the base card click, leading to contact for the highest tier.
                     window.location.href = '#contact';
-                    return; 
+                    return;
                 }
 
+                // Logic for Standard/Advanced/Pro Volume/Bulk Batch
                 selectedPlanInput.value = plan;
                 populateUrgencySlabs(plan);
 
-                // Show/hide the slab selector based on the plan (Free sample only has one option)
-                const isFreeSample = plan === 'Free Sample';
-                urgencySelect.parentNode.style.display = isFreeSample ? 'none' : 'block';
-                
-                // Update button text
-                submitBtn.textContent = isFreeSample ? 'Claim Free Report' : 'Proceed to Payment';
+                urgencySelect.parentNode.style.display = 'block';
+                submitBtn.textContent = 'Proceed to Payment';
 
                 modal.style.display = 'flex';
             });
@@ -514,7 +528,7 @@
 
             // 1. Validate Webhook (Safety Check)
             if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE' || finalPaymentUrl.includes('[STRIPE_LINK_')) {
-                alert('CRITICAL: Please configure the Stripe links and n8n webhook URL in the HTML script.');
+                alert('CRITICAL: Please configure the Stripe links and n8n webhook URL in the script.');
                 return;
             }
 
@@ -538,7 +552,14 @@
                 }
 
                 // 5. Success: Redirect to Payment Gateway
-                if (finalPaymentUrl && SLAB_PRICES[selectedPlanInput.value][0].price > 0) {
+                const currentPlan = selectedPlanInput.value;
+                const isFree = currentPlan === 'Free Sample';
+                const isContactSale = currentPlan === 'Apex Vault'; // Handle the #contact redirect from modal too
+
+                if (isContactSale) {
+                     window.location.href = '#contact';
+                } else if (!isFree && finalPaymentUrl) {
+                     // Redirect to Stripe for payment
                      window.location.href = finalPaymentUrl;
                 } else {
                      // Handle Free Sample submission success without redirect
