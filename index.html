@@ -1,98 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Apex Data</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <title>ApexData – Smarter Data Insights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
   <style>
-    body {font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #f9fafb; color: #333;}
-    header {background: linear-gradient(90deg,#2d3748,#1a202c); color: #fff; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center;}
-    .logo {font-size: 1.4rem; font-weight: 700; letter-spacing: 1px;}
-    .hero {text-align: center; padding: 5rem 2rem; background: linear-gradient(135deg,#edf2f7,#fff);}
-    .hero h1 {font-size: 2.5rem; margin-bottom: 1rem;}
-    .hero p {font-size: 1.2rem; color: #555;}
-    .cta-btn {background: #3182ce; color: #fff; border: none; padding: 0.8rem 1.6rem; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.2s;}
-    .cta-btn:hover {background: #2b6cb0;}
-    .pricing {padding: 4rem 2rem; background: #fff; text-align: center;}
-    .pricing h2 {font-size: 2rem; margin-bottom: 2rem;}
-    .pricing-grid {display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;}
-    .price-card {background: #f7fafc; border-radius: 12px; padding: 2rem; width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
-    .price-card h3 {margin: 0.5rem 0;}
-    .price-card p {color: #555;}
-    .demo {padding: 4rem 2rem; text-align: center; background: #edf2f7;}
-    .demo img {max-width: 90%; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);}
-    .trust {padding: 2rem; background: #fff; text-align: center;}
-    .trust img {height: 40px; margin: 0 1rem; opacity: 0.8;}
-    .faq, .about, .contact {padding: 4rem 2rem; max-width: 900px; margin: auto;}
-    footer {background: #1a202c; color: #ccc; text-align: center; padding: 2rem;}
-    input, textarea {width: 100%; padding: 0.7rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 6px;}
-    form button {margin-top: 1rem; background: #3182ce; color: #fff; border: none; padding: 0.7rem 1.2rem; border-radius: 6px; cursor: pointer;}
-    form button:hover {background: #2b6cb0;}
+    :root {
+      --primary: #6366F1; /* indigo */
+      --primary-dark: #4F46E5;
+      --accent: #8B5CF6; /* purple */
+      --bg: #F9FAFB;
+      --text-dark: #1E293B;
+      --text-light: #475569;
+    }
+    * {box-sizing:border-box;}
+    body {margin:0; font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text-dark);}
+    header {
+      background: white; 
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1.2rem 3rem; box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      position:sticky; top:0; z-index:100;
+    }
+    .logo {font-weight:700; font-size:1.4rem; color:var(--primary);}
+    nav button {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border:none; color:#fff; font-weight:600;
+      padding:0.7rem 1.6rem; border-radius:9999px;
+      cursor:pointer; transition:0.25s;
+    }
+    nav button:hover {transform:scale(1.05); box-shadow:0 8px 20px rgba(99,102,241,0.3);}
+    
+    .hero {
+      text-align:center; padding:6rem 2rem;
+      background: linear-gradient(135deg,#6366F1,#8B5CF6,#14B8A6);
+      color:white;
+    }
+    .hero h1 {font-size:3.2rem; font-weight:700; margin-bottom:1rem;}
+    .hero h1 span {
+      background: linear-gradient(90deg,#06b6d4,#3b82f6);
+      -webkit-background-clip:text; color:transparent;
+    }
+    .hero p {font-size:1.2rem; font-weight:300; max-width:700px; margin:0 auto 2rem;}
+    .hero button {background:#fff; color:var(--primary-dark);}
+    
+    .trust {background:#fff; padding:2.5rem; text-align:center;}
+    .trust img {height:40px; margin:0 1rem; opacity:0.7;}
+    
+    .pricing {padding:6rem 2rem; text-align:center;}
+    .pricing h2 {font-size:2.4rem; margin-bottom:3rem;}
+    .pricing-grid {display:flex; flex-wrap:wrap; justify-content:center; gap:2rem;}
+    .card {
+      background:#fff; border-radius:16px; padding:2.5rem; width:300px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.05);
+      transition:0.3s;
+      position:relative;
+    }
+    .card:hover {transform:translateY(-8px); box-shadow:0 12px 28px rgba(0,0,0,0.1);}
+    .card h3 {margin:0.5rem 0; font-weight:600;}
+    .card p {color:var(--text-light);}
+    .card strong {font-size:1.6rem; color:var(--primary);}
+    .highlight {border:2px solid var(--primary);}
+    .highlight::before {
+      content:"Most Popular";
+      position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+      background:var(--primary); color:#fff; font-size:0.8rem;
+      padding:4px 12px; border-radius:20px;
+    }
+    .card button {
+      margin-top:1rem; width:100%;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      color:#fff; border:none; padding:0.8rem; border-radius:8px;
+      cursor:pointer; transition:0.2s;
+    }
+    .card button:hover {opacity:0.9;}
+    
+    .demo {padding:6rem 2rem; text-align:center; background:#eef2ff;}
+    .demo h2 {font-size:2rem; margin-bottom:2rem;}
+    .demo img {
+      max-width:85%; border-radius:16px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.15);
+      transform:rotate(-1.5deg);
+    }
+    
+    .faq, .about, .contact {padding:6rem 2rem; max-width:900px; margin:auto;}
+    .faq h2, .about h2, .contact h2 {font-size:2rem; margin-bottom:2rem;}
+    
+    input, textarea {
+      width:100%; padding:0.8rem; margin:0.6rem 0;
+      border:1px solid #ddd; border-radius:8px; font-family:inherit;
+    }
+    form button {
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      border:none; padding:0.9rem 1.6rem; color:#fff; border-radius:8px;
+      font-weight:600; cursor:pointer; transition:0.2s;
+    }
+    form button:hover {opacity:0.9;}
+    
+    footer {
+      background:#1E293B; color:#94A3B8;
+      text-align:center; padding:2rem;
+    }
+    .socials a {color:#fff; margin:0 0.5rem; text-decoration:none; font-size:1.2rem;}
   </style>
 </head>
 <body>
   <header>
     <div class="logo">⚡ ApexData</div>
-    <nav><button class="cta-btn">Get Started</button></nav>
+    <nav><button>Get Started</button></nav>
   </header>
 
-  <section class="hero">
-    <h1>Data Insights, Simplified</h1>
-    <p>Upload your data. Get actionable insights instantly. No hassle. No complexity.</p>
-    <button class="cta-btn">Try Now (Coming Soon)</button>
+  <section class="hero" data-aos="fade-up">
+    <h1>Data Insights. <span>Reimagined.</span></h1>
+    <p>Upload your data, let our system process it, and get instant, actionable insights. Simple. Secure. Scalable.</p>
+    <button>🚀 Try Demo (Coming Soon)</button>
   </section>
 
-  <section class="trust">
+  <section class="trust" data-aos="fade-up">
     <p>Trusted by professionals worldwide</p>
     <div>
-      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+1" alt="Logo1"/>
-      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+2" alt="Logo2"/>
-      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+3" alt="Logo3"/>
+      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+1"/>
+      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+2"/>
+      <img src="https://dummyimage.com/100x40/ccc/fff&text=Logo+3"/>
     </div>
   </section>
 
-  <section class="pricing">
+  <section class="pricing" data-aos="fade-up">
     <h2>Choose Your Plan</h2>
     <div class="pricing-grid">
-      <div class="price-card">
+      <div class="card">
         <h3>Basic</h3>
         <p><strong>$399</strong> / report</p>
         <p>Quick insights for small datasets.</p>
-        <button class="cta-btn">Coming Soon</button>
+        <button>Coming Soon</button>
       </div>
-      <div class="price-card" style="border:2px solid #3182ce;">
+      <div class="card highlight">
         <h3>Standard</h3>
         <p><strong>$899</strong> / report</p>
         <p>Deeper insights with advanced analysis.</p>
-        <button class="cta-btn">Coming Soon</button>
+        <button>Coming Soon</button>
       </div>
-      <div class="price-card">
+      <div class="card">
         <h3>Premium</h3>
         <p><strong>$1499</strong> / report</p>
         <p>Enterprise-grade insights & support.</p>
-        <button class="cta-btn">Coming Soon</button>
+        <button>Coming Soon</button>
       </div>
     </div>
   </section>
 
-  <section class="demo">
+  <section class="demo" data-aos="zoom-in">
     <h2>See It In Action</h2>
-    <img src="https://dummyimage.com/800x400/ddd/555&text=Sample+Dashboard+Preview" alt="Demo dashboard"/>
+    <img src="https://dummyimage.com/900x500/ddd/555&text=Dashboard+Preview" alt="Demo dashboard"/>
   </section>
 
-  <section class="faq">
+  <section class="faq" data-aos="fade-up">
     <h2>FAQ</h2>
-    <p><strong>Q:</strong> How do I get my report? <br><strong>A:</strong> Upload your data, we process it, and deliver insights securely.</p>
-    <p><strong>Q:</strong> Is my data safe? <br><strong>A:</strong> Absolutely. We use enterprise-grade encryption and privacy-first practices.</p>
+    <p><strong>Q:</strong> How do I get my report?<br><strong>A:</strong> Upload your data, we process it, and deliver insights securely.</p>
+    <p><strong>Q:</strong> Is my data safe?<br><strong>A:</strong> Absolutely. We use enterprise-grade encryption and privacy-first practices.</p>
   </section>
 
-  <section class="about">
+  <section class="about" data-aos="fade-up">
     <h2>About ApexData</h2>
     <p>We believe data analysis should be simple, fast, and accessible. ApexData provides professional-grade insights for businesses of every size.</p>
   </section>
 
-  <section class="contact">
+  <section class="contact" data-aos="fade-up">
     <h2>Contact Us</h2>
     <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <input type="text" name="name" placeholder="Your Name" required/>
@@ -104,6 +178,14 @@
 
   <footer>
     <p>© 2025 ApexData. All rights reserved.</p>
+    <div class="socials">
+      <a href="#">🌐</a>
+      <a href="#">🐦</a>
+      <a href="#">💼</a>
+    </div>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({duration:1000, once:true});</script>
 </body>
 </html>
