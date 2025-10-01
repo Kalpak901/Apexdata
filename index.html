@@ -89,7 +89,7 @@
         .pricing-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
         .price { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--primary-color); }
         .pricing-card p { font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 1.5rem; flex-grow: 1; }
-        .delivery-time { font-weight: 600; color: var(--primary-color); margin-bottom: 1.5rem; display: block; }
+        .delivery-time { font-weight: 600; color: var(--text-color-light); margin-bottom: 1.5rem; display: block; }
         .pricing-card .btn { width: 100%; margin-top: auto; }
         .faq-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
         .faq-item { text-align: left; border-left: 4px solid var(--primary-color); }
@@ -99,7 +99,7 @@
         .contact-form-container { max-width: 700px; margin: 0 auto; background: var(--card-bg-color); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 1.5rem; text-align: left; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; background-color: var(--background-color); border: 1px solid var(--border-color); border-radius: 5px; color: var(--text-color); font-family: 'Poppins', sans-serif; font-size: 1rem; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background-color: var(--background-color); border: 1px solid var(--border-color); border-radius: 5px; color: var(--text-color); font-family: 'Poppins', sans-serif; font-size: 1rem; }
         .form-group textarea { resize: vertical; min-height: 120px; }
         footer { text-align: center; padding: 3rem 0; background-color: #343a40; border-top: 1px solid var(--border-color); color: #fff; }
         .footer-content { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 2rem; max-width: 600px; margin: 0 auto 2rem auto; }
@@ -224,16 +224,16 @@
                     <div class="pricing-card">
                         <h3>Free Sample</h3>
                         <div class="price">$0</div>
-                        <p>Up to <strong>50 rows</strong>. A risk-free way to experience the power of our platform.</p>
+                        <p>Up to <strong>50 rows</strong>. A risk-free way to experience our platform.</p>
                         <span class="delivery-time">"In just a few minutes"</span>
-                        <button class="btn open-modal-btn" data-plan="Free Sample">🎯 Try the Platform Free</button>
+                        <button class="btn open-modal-btn" data-plan="Free Sample">🎯 Try Free Sample</button>
                     </div>
 
                     <div class="pricing-card">
                         <h3>Starter</h3>
                         <div class="price">$399</div>
                         <p>Up to <strong>2,000 rows</strong>. Perfect for pilots or one-time projects.</p>
-                        <span class="delivery-time">48 Hour Delivery</span>
+                        <span class="delivery-time">Base: 48 Hour Delivery</span>
                         <button class="btn open-modal-btn" data-plan="Starter">🚀 Select Plan</button>
                     </div>
 
@@ -241,7 +241,7 @@
                         <h3>Advanced</h3>
                         <div class="price">$899</div>
                         <p>Up to <strong>4,500 rows</strong>. Optimal for weekly business analysis.</p>
-                        <span class="delivery-time">72 Hour Delivery</span>
+                        <span class="delivery-time">Base: 72 Hour Delivery</span>
                         <button class="btn open-modal-btn" data-plan="Advanced">⚡ Unlock Insights</button>
                     </div>
 
@@ -249,23 +249,23 @@
                         <h3>Pro Volume</h3>
                         <div class="price">$1,499</div>
                         <p>Up to <strong>9,000 rows</strong>. Serious power for monthly audits.</p>
-                        <span class="delivery-time">96 Hour Delivery</span>
+                        <span class="delivery-time">Base: 96 Hour Delivery</span>
                         <button class="btn open-modal-btn" data-plan="Pro Volume">⚡ Get Full Report</button>
                     </div>
-
+                    
                     <div class="pricing-card">
                         <h3>Bulk Batch</h3>
                         <div class="price">$2,299</div>
                         <p>Up to <strong>15,000 rows</strong>. For data migration or quarterly events.</p>
-                        <span class="delivery-time">120 Hour Delivery</span>
+                        <span class="delivery-time">Base: 120 Hour Delivery</span>
                         <button class="btn open-modal-btn" data-plan="Bulk Batch">⚡ Get Bulk Report</button>
                     </div>
 
                     <div class="pricing-card">
                         <h3>Apex Vault</h3>
-                        <div class="price">$4,999</div>
+                        <div class="price">$4,999+</div>
                         <p>Up to <strong>20,000 rows</strong>. Integrity, Compliance & $500 Guarantee.</p>
-                        <span class="delivery-time">6 HOUR PRIORITY</span>
+                        <span class="delivery-time">Priority Support</span>
                         <a href="#contact" class="btn">Contact Sales</a>
                     </div>
                 </div>
@@ -362,10 +362,19 @@
             <h2 id="modalTitle" style="margin-bottom: 1.5rem;">Upload Your Data</h2>
             <form id="uploadForm">
                 <input type="hidden" id="selectedPlan" name="plan">
-                
+                <input type="hidden" id="finalPrice" name="price">
+                <input type="hidden" id="finalUrgency" name="urgency">
+                <input type="hidden" id="paymentUrl" name="paymentUrl">
+
                 <div class="form-group">
                     <label for="clientEmail">Your Email Address</label>
                     <input type="email" id="clientEmail" name="email" placeholder="We'll send the results here" required>
+                </div>
+
+                <div class="form-group" id="urgencyContainer">
+                    <label for="urgencySelect">Select Urgency</label>
+                    <select id="urgencySelect" name="urgencySelection">
+                    </select>
                 </div>
                 
                 <div class="form-group">
@@ -378,47 +387,111 @@
                     <textarea id="requirements" name="requirements" placeholder="e.g., 'Analyze the correlation between ad spend and user signups.'"></textarea>
                 </div>
                 
-                <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Upload and Process</button>
+                <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Proceed</button>
             </form>
             <div id="form-message"></div>
         </div>
     </div>
 
     <script>
-        // Banner close functionality
-        document.getElementById('closeBanner').addEventListener('click', function() {
-            document.getElementById('topBanner').style.display = 'none';
-            document.querySelector('header').style.top = '0';
-        });
+        // --- DATA STRUCTURE FOR DYNAMIC SLABS ---
+        const PLAN_OPTIONS = {
+            'Starter': {
+                basePrice: 399,
+                slabs: [
+                    { time: '30 MIN PRIORITY', price: 799, url: '[STRIPE_LINK_1]' },
+                    { time: '2 HOUR RUSH', price: 599, url: '[STRIPE_LINK_2]' },
+                    { time: '48 HOUR STANDARD', price: 399, url: '[STRIPE_LINK_3]' }
+                ]
+            },
+            'Advanced': {
+                basePrice: 899,
+                slabs: [
+                    { time: '6 HOUR PRIORITY', price: 1599, url: '[STRIPE_LINK_4]' },
+                    { time: '24 HOUR RUSH', price: 1199, url: '[STRIPE_LINK_5]' },
+                    { time: '72 HOUR STANDARD', price: 899, url: '[STRIPE_LINK_6]' }
+                ]
+            },
+            'Pro Volume': {
+                basePrice: 1499,
+                slabs: [
+                    { time: '12 HOUR PRIORITY', price: 2499, url: '[STRIPE_LINK_7]' },
+                    { time: '48 HOUR RUSH', price: 1999, url: '[STRIPE_LINK_8]' },
+                    { time: '96 HOUR STANDARD', price: 1499, url: '[STRIPE_LINK_9]' }
+                ]
+            },
+            'Bulk Batch': {
+                 basePrice: 2299,
+                 slabs: [
+                    { time: '18 HOUR PRIORITY', price: 3499, url: '[STRIPE_LINK_10]' },
+                    { time: '48 HOUR RUSH', price: 2999, url: '[STRIPE_LINK_11]' },
+                    { time: '120 HOUR STANDARD', price: 2299, url: '[STRIPE_LINK_12]' }
+                 ]
+            },
+            'Free Sample': {
+                basePrice: 0,
+                slabs: [{ time: 'Free Sample', price: 0, url: 'FREE' }]
+            }
+        };
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
+        // --- MODAL CONTROL LOGIC ---
         const modal = document.getElementById('uploadModal');
         const openModalBtns = document.querySelectorAll('.open-modal-btn');
         const closeModalBtn = document.querySelector('.close-button');
+        
         const selectedPlanInput = document.getElementById('selectedPlan');
+        const finalPriceInput = document.getElementById('finalPrice');
+        const finalUrgencyInput = document.getElementById('finalUrgency');
+        const paymentUrlInput = document.getElementById('paymentUrl');
+        
+        const urgencyContainer = document.getElementById('urgencyContainer');
+        const urgencySelect = document.getElementById('urgencySelect');
+        
         const modalTitle = document.getElementById('modalTitle');
         const submitBtn = document.getElementById('submitBtn');
         const uploadForm = document.getElementById('uploadForm');
+
+        const populateUrgencyDropdown = (plan) => {
+            const options = PLAN_OPTIONS[plan];
+            urgencySelect.innerHTML = ''; // Clear existing options
+            
+            options.slabs.forEach((slab, index) => {
+                const option = document.createElement('option');
+                option.value = index; // Use index to reference the slab object
+                option.textContent = `${slab.time} - $${slab.price}`;
+                urgencySelect.appendChild(option);
+            });
+            
+            // Set initial values from the first (default) slab
+            updateModalPrice(plan, 0); 
+        };
+
+        const updateModalPrice = (plan, slabIndex) => {
+            const slab = PLAN_OPTIONS[plan].slabs[slabIndex];
+            finalPriceInput.value = slab.price;
+            finalUrgencyInput.value = slab.time;
+            paymentUrlInput.value = slab.url;
+            submitBtn.textContent = `Proceed to Payment ($${slab.price})`;
+        };
 
         openModalBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const plan = btn.getAttribute('data-plan');
+                
                 selectedPlanInput.value = plan;
-                modalTitle.textContent = `Upload Data for: ${plan} Plan`;
+                modalTitle.textContent = `Configure Your ${plan} Report`;
 
                 if (plan === 'Free Sample') {
+                    urgencyContainer.style.display = 'none';
+                    finalPriceInput.value = 0;
+                    finalUrgencyInput.value = 'N/A';
+                    paymentUrlInput.value = 'FREE';
                     submitBtn.textContent = 'Claim Free Report';
                 } else {
-                    submitBtn.textContent = `Proceed to Payment`;
+                    urgencyContainer.style.display = 'block';
+                    populateUrgencyDropdown(plan);
+                    urgencySelect.onchange = () => updateModalPrice(plan, urgencySelect.value);
                 }
                 
                 modal.style.display = 'flex';
@@ -427,6 +500,7 @@
             });
         });
 
+        // --- GENERAL MODAL & SCRIPT LOGIC ---
         const closeModal = () => { modal.style.display = 'none'; }
         closeModalBtn.addEventListener('click', closeModal);
         window.addEventListener('click', (event) => { if (event.target == modal) { closeModal(); } });
@@ -435,13 +509,11 @@
 
         uploadForm.addEventListener('submit', async (event) => {
             event.preventDefault();
-            
             const n8nWebhookUrl = 'YOUR_N8N_WEBHOOK_URL_HERE';
-            // NOTE: In this simpler model, the payment logic is handled after n8n processes the file.
-            // n8n would generate a Stripe payment link and email it to the client.
+            const finalPaymentUrl = paymentUrlInput.value;
 
-            if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE') {
-                alert('Please configure the n8n webhook URL in the script.');
+            if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE' || (finalPaymentUrl.includes('[STRIPE_LINK') && finalPaymentUrl !== 'FREE')) {
+                alert('CRITICAL: Please configure Stripe links and n8n webhook URL in the script.');
                 return;
             }
 
@@ -451,37 +523,42 @@
             const formData = new FormData(uploadForm);
             
             try {
-                const response = await fetch(n8nWebhookUrl, {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Server responded with status: ${response.status}`);
-                }
+                const response = await fetch(n8nWebhookUrl, { method: 'POST', body: formData });
+                if (!response.ok) throw new Error(`Server responded with status: ${response.status}`);
                 
-                // For all plans (including free), show a success message. The backend will handle payment links.
-                messageDiv.textContent = 'Upload successful! Please check your email for confirmation and next steps.';
-                messageDiv.className = 'message-success'; 
-                messageDiv.style.display = 'block';
-
-                setTimeout(() => {
-                    closeModal();
-                }, 5000);
-
+                if (finalPaymentUrl === 'FREE') {
+                    messageDiv.textContent = 'Upload successful! Your free report will be emailed in a few minutes.';
+                    messageDiv.className = 'message-success'; 
+                    messageDiv.style.display = 'block';
+                    setTimeout(closeModal, 4000);
+                } else {
+                    window.location.href = finalPaymentUrl;
+                }
             } catch (error) {
                 messageDiv.textContent = 'An error occurred during upload. Please try again.';
-                messageDiv.className = 'message-error'; 
+                messageDiv.className = 'message-error';
                 messageDiv.style.display = 'block';
                 console.error('Upload Error:', error);
             } finally {
-                // Do not re-enable the button immediately on success, to prevent double-submission.
-                if (messageDiv.className !== 'message-success') {
-                    submitBtn.textContent = 'Upload and Process';
+                if (finalPaymentUrl !== 'FREE') { // Only re-enable if it's not a successful free submission
+                    submitBtn.textContent = `Proceed to Payment ($${finalPriceInput.value})`;
                     submitBtn.disabled = false;
                 }
             }
         });
+
+        document.getElementById('closeBanner').addEventListener('click', function() {
+            document.getElementById('topBanner').style.display = 'none';
+            document.querySelector('header').style.top = '0';
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
     </script>
     
 </body>
