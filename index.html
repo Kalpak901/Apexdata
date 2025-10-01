@@ -23,6 +23,10 @@
             --border-color: #dee2e6;
             --success-color: #28a745;
             --error-color: #dc3545;
+            /* Custom Colors for Urgency Slabs */
+            --priority-color: #e74c3c; 
+            --rush-color: #f39c12;
+            --standard-color: #2ecc71;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -90,6 +94,15 @@
         .pricing-card p { font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 1.5rem; flex-grow: 1; }
         .delivery-time { font-weight: 600; color: var(--primary-color); margin-bottom: 1.5rem; display: block; }
         .pricing-card .btn { width: 100%; margin-top: auto; }
+        
+        /* New Styles for Pricing Slabs */
+        .slab-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .slab-btn { display: block; padding: 10px 15px; border-radius: 6px; font-size: 0.95rem; font-weight: 600; color: white; text-decoration: none; transition: transform 0.2s; }
+        .slab-btn:hover { transform: translateY(-2px); }
+        .slab-priority { background-color: var(--priority-color); }
+        .slab-rush { background-color: var(--rush-color); }
+        .slab-standard { background-color: var(--standard-color); }
+
         .faq-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
         .faq-item { text-align: left; border-left: 4px solid var(--primary-color); }
         .faq-item h3 { margin-bottom: 0.5rem; }
@@ -229,42 +242,57 @@
 
                     <div class="pricing-card">
                         <h3>Starter (2,000 Rows)</h3>
-                        <div class="price">$399</div>
-                        <p>Up to <strong>2,000 rows</strong>. Perfect for pilots or one-time projects. **48 HR SLA**</p>
-                        <span class="delivery-time">30 MIN PRIORITY: $799</span>
-                        <button class="btn open-modal-btn" data-plan="Starter">🚀 Get Started</button>
+                        <p>Up to <strong>2,000 rows</strong>. Perfect for pilots or one-time projects.</p>
+                        <span class="delivery-time">Base Price: $400</span>
+                        <div class="slab-grid">
+                            <a href="[STRIPE_LINK_2000_30MIN]" class="slab-btn slab-priority" style="background-color: var(--priority-color);">30 MIN PRIORITY: $799</a>
+                            <a href="[STRIPE_LINK_2000_2HR]" class="slab-btn slab-rush" style="background-color: var(--rush-color);">2 HOUR RUSH: $599</a>
+                            <a href="[STRIPE_LINK_2000_48HR]" class="slab-btn slab-standard" style="background-color: var(--standard-color);">48 HOUR STANDARD: $400</a>
+                        </div>
                     </div>
 
                     <div class="pricing-card highlight">
                         <h3>Advanced (4,500 Rows)</h3>
-                        <div class="price">$899</div>
-                        <p>Up to <strong>4,500 rows</strong>. Optimal for weekly business analysis. **72 HR SLA**</p>
-                        <span class="delivery-time">6 HOUR PRIORITY: $1,599</span>
-                        <button class="btn open-modal-btn" data-plan="Advanced">⚡ Unlock Insights</button>
+                        <p>Up to <strong>4,500 rows</strong>. Optimal for weekly business analysis.</p>
+                        <span class="delivery-time">Base Price: $899</span>
+                        <div class="slab-grid">
+                            <a href="[STRIPE_LINK_4500_6HR]" class="slab-btn slab-priority" style="background-color: var(--priority-color);">6 HOUR PRIORITY: $1,599</a>
+                            <a href="[STRIPE_LINK_4500_24HR]" class="slab-btn slab-rush" style="background-color: var(--rush-color);">24 HOUR RUSH: $1,199</a>
+                            <a href="[STRIPE_LINK_4500_72HR]" class="slab-btn slab-standard" style="background-color: var(--standard-color);">72 HOUR STANDARD: $899</a>
+                        </div>
                     </div>
 
                     <div class="pricing-card">
                         <h3>Pro Volume (9,000 Rows)</h3>
-                        <div class="price">$1,499</div>
-                        <p>Up to <strong>9,000 rows</strong>. Serious power for monthly audits. **96 HR SLA**</p>
-                        <span class="delivery-time">12 HOUR PRIORITY: $2,499</span>
-                        <button class="btn open-modal-btn" data-plan="Pro Volume">⚡ Unlock Insights</button>
+                        <p>Up to <strong>9,000 rows</strong>. Serious power for monthly audits.</p>
+                        <span class="delivery-time">Base Price: $1,499</span>
+                        <div class="slab-grid">
+                            <a href="[STRIPE_LINK_9000_12HR]" class="slab-btn slab-priority" style="background-color: var(--priority-color);">12 HOUR PRIORITY: $2,499</a>
+                            <a href="[STRIPE_LINK_9000_48HR]" class="slab-btn slab-rush" style="background-color: var(--rush-color);">48 HOUR RUSH: $1,999</a>
+                            <a href="[STRIPE_LINK_9000_96HR]" class="slab-btn slab-standard" style="background-color: var(--standard-color);">96 HOUR STANDARD: $1,499</a>
+                        </div>
                     </div>
 
                     <div class="pricing-card">
                         <h3>Bulk Batch (15,000 Rows)</h3>
-                        <div class="price">$2,299</div>
-                        <p>Up to <strong>15,000 rows</strong>. For data migration or quarterly events. **120 HR SLA**</p>
-                        <span class="delivery-time">18 HOUR PRIORITY: $3,499</span>
-                        <button class="btn open-modal-btn" data-plan="Bulk Batch">⚡ Get Bulk Report</button>
+                        <p>Up to <strong>15,000 rows</strong>. For data migration or quarterly events.</p>
+                        <span class="delivery-time">Base Price: $2,299</span>
+                        <div class="slab-grid">
+                            <a href="[STRIPE_LINK_15000_18HR]" class="slab-btn slab-priority" style="background-color: var(--priority-color);">18 HOUR PRIORITY: $3,499</a>
+                            <a href="[STRIPE_LINK_15000_48HR]" class="slab-btn slab-rush" style="background-color: var(--rush-color);">48 HOUR RUSH: $2,999</a>
+                            <a href="[STRIPE_LINK_15000_120HR]" class="slab-btn slab-standard" style="background-color: var(--standard-color);">120 HOUR STANDARD: $2,299</a>
+                        </div>
                     </div>
 
                     <div class="pricing-card">
                         <h3>Apex Vault (20,000 Rows)</h3>
-                        <div class="price">$4,999</div>
-                        <p>Up to <strong>20,000 rows</strong>. Integrity, Compliance & $500 Guarantee. **6 HR SLA**</p>
-                        <span class="delivery-time">6 HOUR PRIORITY: $4,999</span>
-                        <button class="btn open-modal-btn" data-plan="Apex Vault">🔑 Activate Vault</button>
+                        <p>Up to <strong>20,000 rows</strong>. Integrity, Compliance & $500 Guarantee.</p>
+                        <span class="delivery-time">Base Price: $4,999</span>
+                        <div class="slab-grid">
+                            <a href="[STRIPE_LINK_20000_6HR_VAULT]" class="slab-btn slab-priority" style="background-color: var(--priority-color);">6 HOUR PRIORITY: $4,999</a>
+                            <a href="[STRIPE_LINK_20000_48HR_VAULT]" class="slab-btn slab-rush" style="background-color: var(--rush-color);">48 HOUR RUSH: $3,999</a>
+                            <a href="#contact" class="slab-btn slab-standard" style="background-color: var(--standard-color);">Contact Sales</a>
+                        </div>
                     </div>
                 </div>
             </div>
