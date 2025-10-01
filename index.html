@@ -5,28 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APEX DATA: AI-Powered Business Insights — Boost Decisions in Hours</title>
     <style>
-        /* --- CORE STYLES (High Contrast Dark Theme) --- */
+        /* --- CORE STYLES (High Contrast & Modern Professional) --- */
         :root {
-            --bg-dark: #0d1117; /* Deep Black */
+            --bg-color: #0d1117; /* Deep Black Background */
             --text-light: #ffffff;
-            --accent-primary: #00ffaa; /* Neon Green/Aqua - AI Glow */
-            --accent-secondary: #2563eb; /* Primary Blue for CTAs */
-            --accent-priority: #dc2626; /* Red for Priority/Urgency */
-            --card-bg: #161b22; /* Slightly Lighter Card Background */
+            --accent-primary: #00ffaa; /* Neon Green/Aqua */
+            --accent-secondary: #2563eb; /* Primary Blue (CTAs) */
+            --accent-priority: #e74c3c; /* Bright Red for Priority */
+            --card-bg: #1f2a40; /* Dark Blue-Gray Card for Depth */
             --border-subtle: #30363d;
             --font-stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             font-family: var(--font-stack);
-            background-color: var(--bg-dark);
+            background-color: var(--bg-color);
             color: var(--text-light);
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            /* Subtle data background effect for depth */
-            background-image: radial-gradient(at 0% 0%, rgba(0, 255, 170, 0.1) 0%, transparent 50%),
-                              radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.08) 0%, transparent 60%);
             background-attachment: fixed;
         }
         .container {
@@ -37,15 +34,12 @@
 
         /* --- Global Sections & Typography --- */
         section {
-            padding: 80px 0;
+            padding: 100px 0; /* Increased Vertical Spacing */
             border-bottom: 1px solid var(--border-subtle);
         }
-        section:last-child {
-            border-bottom: none;
-        }
         h2 {
-            font-size: 2.2em;
-            margin-bottom: 50px;
+            font-size: 2.5em;
+            margin-bottom: 60px;
             color: var(--accent-primary);
             text-align: center;
         }
@@ -62,7 +56,6 @@
             font-size: 1.8em;
             font-weight: 700;
             color: var(--accent-primary);
-            text-shadow: 0 0 5px rgba(0, 255, 170, 0.5);
         }
         .nav a {
             color: var(--text-light);
@@ -74,7 +67,7 @@
         }
         .nav a:hover {
             color: var(--accent-primary);
-            background-color: var(--bg-card);
+            background-color: var(--border-subtle);
         }
         .nav .external-link {
             border: 1px solid var(--accent-primary);
@@ -82,21 +75,21 @@
 
         /* --- Hero Section & CTA --- */
         .hero {
-            padding: 120px 0;
+            padding: 150px 0;
             text-align: center;
         }
         .hero h1 {
-            font-size: 3.8em;
-            margin-bottom: 15px;
+            font-size: 4em;
+            margin-bottom: 20px;
             line-height: 1.1;
         }
         .hero h1 strong {
             color: var(--accent-primary);
         }
         .hero p {
-            font-size: 1.2em;
-            color: #aaa;
-            margin-bottom: 30px;
+            font-size: 1.4em;
+            color: #ccc;
+            margin-bottom: 40px;
         }
         .free-sample-cta {
             background-color: var(--accent-secondary);
@@ -115,20 +108,20 @@
         }
         .sample-text {
             color: var(--accent-primary);
-            margin-top: 10px;
-            font-size: 1.1em;
+            margin-top: 15px;
+            font-size: 1.2em;
         }
 
         /* --- Pricing Grid & Cards --- */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            gap: 30px;
         }
         .pricing-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 30px;
             display: flex;
             flex-direction: column;
@@ -136,10 +129,10 @@
         }
         .pricing-card:hover {
             border-color: var(--accent-primary);
-            box-shadow: 0 0 15px rgba(0, 255, 170, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
         }
         .price-display {
-            font-size: 2.5em;
+            font-size: 2.8em;
             font-weight: 700;
             color: var(--accent-secondary);
             margin: 10px 0 20px;
@@ -152,9 +145,9 @@
             flex-grow: 1;
         }
         .features-list li {
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px dashed var(--border-subtle);
-            font-size: 0.95em;
+            font-size: 1em;
             text-align: left;
         }
         .features-list li::before {
@@ -167,25 +160,26 @@
         /* --- CTA Button Styling --- */
         .urgency-cta {
             display: block;
-            padding: 12px;
+            padding: 14px;
             margin-top: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
             text-decoration: none;
             transition: background-color 0.3s, transform 0.3s;
             text-align: center;
+            font-size: 1.05em;
         }
         .btn-priority {
             background-color: var(--accent-priority); 
             color: white;
-            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
         }
         .btn-rush {
             background-color: var(--accent-secondary); 
             color: white;
         }
         .btn-standard {
-            background-color: var(--bg-card);
+            background-color: var(--bg-dark);
             color: #aaa;
             border: 1px solid var(--border-subtle);
         }
@@ -199,17 +193,40 @@
             width: 100%;
         }
         #apex-vault-card {
-            background-color: #3b0e1d; /* Dark Red/Maroon for risk */
+            background-color: #3b0e1d; 
             border: 3px solid var(--accent-priority);
-            box-shadow: 0 0 25px rgba(220, 38, 38, 0.5);
-            padding: 40px;
+            box-shadow: 0 0 25px rgba(231, 76, 60, 0.5);
+            padding: 50px;
             max-width: 900px;
             text-align: center;
             border-radius: 15px;
         }
+        #apex-vault-card h3 {
+             color: var(--accent-priority);
+             font-size: 2em;
+        }
         #apex-vault-card .price-display {
             color: var(--accent-priority);
             font-size: 4em;
+        }
+
+        /* --- Use Cases --- */
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .use-case-card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .use-case-card h4 {
+            color: var(--accent-primary);
+            margin-top: 0;
+            font-size: 1.2em;
         }
 
         /* --- Footer & Contact --- */
@@ -227,8 +244,8 @@
         }
         .contact-section input, .contact-section select, .contact-section textarea {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
+            padding: 12px;
+            margin-top: 8px;
             border: 1px solid var(--border-subtle);
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -240,7 +257,7 @@
             padding: 12px 30px;
             border: none;
             border-radius: 5px;
-            margin-top: 20px;
+            margin-top: 25px;
             cursor: pointer;
             font-weight: bold;
         }
@@ -281,15 +298,4 @@
             <p class="sample-text">Limited free samples per month — reserve yours today.</p>
         </section>
 
-        <section id="pricing" class="pricing-section">
-            <h2>CHOOSE YOUR SERVICE SLAB: TRANSACTIONAL POWER</h2>
-            
-            <div class="pricing-grid">
-
-                <div class="pricing-card">
-                    <h3>Starter (2,000 Rows)</h3>
-                    <div class="price-display">$399</div>
-                    <p class="price-details">Perfect for startups, pilots, or one-time projects.</p>
-                    <ul class="features-list">
-                        <li>Identify growth bottlenecks, top-performing products, and 2–3 actionable KPIs.</li>
-                        <li>Max 2,
+        <section id="
