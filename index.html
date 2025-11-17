@@ -1,555 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Data - The AI Platform for Profitable Decisions</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Insights — Automated Business Reports</title>
+  <meta name="description" content="AI-powered weekly & monthly insights for Shopify & agencies. Automated. Actionable. Delivered." />
 
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --primary-hover-color: #0056b3;
-            --secondary-color: #e9ecef;
-            --background-color: #f8f9fa;
-            --text-color: #212529;
-            --text-color-light: #6c757d;
-            --card-bg-color: #ffffff;
-            --border-color: #dee2e6;
-            --success-color: #28a745;
-            --error-color: #dc3545;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--text-color); line-height: 1.6; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .top-banner {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            text-align: center;
-            padding: 0.75rem 2rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 1001;
-        }
-        .top-banner-close {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            cursor: pointer;
-            line-height: 1;
-            color: var(--text-color-light);
-        }
-        header { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(10px); 
-            padding: 1rem 0; 
-            position: sticky;
-            top: 0;
-            width: 100%; 
-            z-index: 1000; 
-            border-bottom: 1px solid var(--border-color);
-            transition: top 0.3s;
-        }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
-        .logo i { color: var(--primary-color); }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { color: var(--text-color); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
-        nav ul li a:hover { color: var(--primary-color); }
-        .hero { min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(4, 12, 24, 0.6), rgba(4, 12, 24, 0.6)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover; }
-        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; color: #fff; }
-        .hero-content h1 span { color: var(--primary-color); }
-        .hero-content .sub-headline { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; color: #e0e0e0; font-style: italic;}
-        .btn { display: inline-block; padding: 14px 32px; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; cursor: pointer; border: none; background-image: linear-gradient(to right, #0062E6, #33AEFF); box-shadow: 0 4px 15px 0 rgba(0, 118, 255, 0.35); }
-        .btn:hover { background-image: linear-gradient(to right, #33AEFF, #0062E6); transform: translateY(-3px); box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.5); }
-        section { padding: 100px 0; }
-        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; font-weight: 600; }
-        .how-it-works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .step-card, .faq-item { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .step-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem; }
-        .step-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        #deliverables { background-color: var(--secondary-color); }
-        .deliverables-gallery { border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; margin-top: 2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
-        .deliverables-gallery img { width: 100%; height: auto; display: block; }
-        .sample-report-cta { text-align: center; margin-top: 3rem; }
-        .sample-report-cta p { margin-bottom: 1rem; font-size: 1.1rem; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-        .pricing-card { background: var(--card-bg-color); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
-        .pricing-card.highlight { border-color: var(--primary-color); border-width: 2px; transform: scale(1.02); }
-        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
-        .pricing-card h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600; }
-        .price { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--primary-color); }
-        .pricing-card p { font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 1.5rem; flex-grow: 1; }
-        .delivery-time { font-weight: 600; color: var(--text-color-light); margin-bottom: 1.5rem; display: block; }
-        .pricing-card .btn { width: 100%; margin-top: auto; }
-        .faq-grid { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
-        .faq-item { text-align: left; border-left: 4px solid var(--primary-color); }
-        .faq-item h3 { margin-bottom: 0.5rem; }
-        #about { background-color: var(--secondary-color); }
-        #about p { text-align: center; max-width: 700px; margin: 0 auto; font-size: 1.2rem; line-height: 1.8; }
-        .contact-form-container { max-width: 700px; margin: 0 auto; background: var(--card-bg-color); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 1.5rem; text-align: left; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background-color: var(--background-color); border: 1px solid var(--border-color); border-radius: 5px; color: var(--text-color); font-family: 'Poppins', sans-serif; font-size: 1rem; }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        footer { text-align: center; padding: 3rem 0; background-color: #343a40; border-top: 1px solid var(--border-color); color: #fff; }
-        .footer-content { display: flex; justify-content: space-around; align-items: flex-start; flex-wrap: wrap; gap: 2rem; max-width: 600px; margin: 0 auto 2rem auto; }
-        .footer-col h4 { margin-bottom: 1rem; color: #fff; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 0.5rem; }
-        .footer-col a { color: #e0e0e0; text-decoration: none; }
-        .footer-col a:hover { color: var(--primary-color); }
-        .modal-overlay { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background-color: var(--card-bg-color); margin: auto; padding: 30px; border: 1px solid var(--border-color); border-radius: 10px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; }
-        .close-button:hover, .close-button:focus { color: var(--text-color); text-decoration: none; cursor: pointer; }
-        #uploadForm .form-group { margin-bottom: 1.5rem; text-align: left; }
-        #uploadForm textarea { resize: vertical; min-height: 120px; }
-        @media (max-width: 992px) { .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } }
-        @media (max-width: 768px) { .hero-content h1 { font-size: 2.5rem; } nav ul { display: none; } }
-    </style>
+  <!-- Tailwind CDN for quick styling (no build step) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* small visual polish */
+    .hero-bg{background:linear-gradient(120deg,#0f172a 0%,#0b1220 60%);}
+    .card {background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));}
+  </style>
 </head>
-<body>
-
-    <div class="top-banner" id="topBanner">
-        Save <strong>days</strong> of manual work, get profitable insights in <strong>hours</strong> with the Apex Data Platform.
-        <span class="top-banner-close" id="closeBanner">&times;</span>
+<body class="font-sans bg-slate-900 text-slate-100 leading-relaxed">
+  <header class="py-8 px-6 max-w-5xl mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-pink-500 flex items-center justify-center text-white font-bold">AI</div>
+      <div>
+        <h1 class="text-xl font-semibold">AI Insights OS</h1>
+        <p class="text-sm text-slate-400">Automated business insights for Shopify & agencies</p>
+      </div>
     </div>
+    <nav class="flex gap-4 items-center">
+      <a href="#features" class="text-slate-300 hover:underline">Features</a>
+      <a href="#pricing" class="text-slate-300 hover:underline">Pricing</a>
+      <a href="#demo" class="text-slate-300 hover:underline">Demo</a>
+      <a id="cta-top" href="#get-started" class="bg-indigo-500 px-4 py-2 rounded shadow">Get Insights</a>
+    </nav>
+  </header>
 
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo"><i class="fas fa-chart-line"></i> Apex Data</a>
-            <ul>
-                <li><a href="#how-it-works">The Process</a></li>
-                <li><a href="#deliverables">The Output</a></li>
-                <li><a href="#pricing">Plans</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <main class="max-w-5xl mx-auto px-6">
+    <!-- Hero -->
+    <section class="hero-bg rounded-2xl p-10 mb-8 text-center">
+      <h2 class="text-3xl font-extrabold">Find hidden growth opportunities using AI + your data</h2>
+      <p class="mt-4 text-slate-300">Weekly & monthly insights that tell you what to stop, what to scale, and where the profit hides — automated every 24 hours.</p>
 
-    <main>
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h1>The AI Platform for <span>Profitable Decisions</span></h1>
-                <p class="sub-headline">We help growing businesses turn complex data into actionable growth plans.</p>
-                <a href="#pricing" class="btn">View Plans</a>
-            </div>
-        </section>
+      <div class="mt-6 flex items-center justify-center gap-4">
+        <!-- Payment link approach (no backend required). Replace data-payment-link with your Stripe Payment Link URL -->
+        <button id="pay-link-btn" data-payment-link="PASTE_YOUR_STRIPE_PAYMENT_LINK_HERE" class="bg-emerald-500 hover:bg-emerald-600 px-6 py-3 rounded font-semibold">Start 14‑day Trial</button>
 
-        <section id="how-it-works">
-            <div class="container">
-                <h2 class="section-title">From Data to Dollars in 3 Steps</h2>
-                <div class="how-it-works-grid">
-                    <div class="step-card">
-                        <i class="fas fa-mouse-pointer"></i>
-                        <h3>1. Select Your Plan</h3>
-                        <p>Choose the right analysis depth and delivery speed for your business needs.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>2. Upload Your Data</h3>
-                        <p>Securely submit your data to our encrypted, AI-powered processing engine.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>3. Receive Your Growth Plan</h3>
-                        <p>Get a comprehensive report and dashboard with clear, actionable recommendations.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Alternate: signup which will call your n8n webhook to create client folder, etc -->
+        <button id="signup-btn" class="border border-slate-700 px-6 py-3 rounded text-slate-200">Request Demo</button>
+      </div>
 
-        <section id="deliverables">
-            <div class="container">
-                <h2 class="section-title">Visualize Your Success</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">Our platform doesn't just give you numbers; it provides a clear, strategic view of your business performance.</p>
-                <div class="deliverables-gallery">
-                    <img src="https://placehold.co/1200x650/e9ecef/212529?text=Interactive+Dashboard+Demo+Space" alt="Demo Dashboard Space">
-                </div>
-                <div class="sample-report-cta">
-                    <p>Want to see the full output? Download a sample strategic report.</p>
-                    <a href="#" class="btn">Download Sample Report (PDF)</a>
-                </div>
-            </div>
-        </section>
+      <p class="mt-4 text-slate-400 text-sm">Or book a quick 10-min setup call. Stripe subscription + automated reports. No credit card required for trial.</p>
 
-        <section id="security">
-            <div class="container">
-                <h2 class="section-title">An Enterprise-Grade Security Promise</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">
-                    Your data is protected with end-to-end encryption, processed on Google Cloud's secure infrastructure, and permanently deleted 24 hours after your report is delivered.
-                </p>
-                <div class="how-it-works-grid">
-                    <div class="step-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Data Encryption</h3>
-                        <p>All data is encrypted both in transit (using TLS) and at rest on our secure servers.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-trash-alt"></i>
-                        <h3>Secure Deletion</h3>
-                        <p>Our platform is designed to permanently delete your uploaded data 24 hours after report generation.</p>
-                    </div>
-                    <div class="step-card">
-                        <i class="fas fa-file-signature"></i>
-                        <h3>Strict Confidentiality</h3>
-                        <p>Our platform will never share, sell, or view your data for any purpose other than generating your insights.</p>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="privacy.html" style="color: var(--primary-color);">Read our full Privacy & Data Handling Policy</a>
-                </div>
-            </div>
-        </section>
+    </section>
 
-        <section id="pricing">
-            <div class="container">
-                <h2 class="section-title">Select Your Analysis Plan</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">
-                    Each plan is designed to solve a specific business challenge. Choose the depth of analysis you need.
-                </p>
+    <!-- Features -->
+    <section id="features" class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="card p-6 rounded-lg shadow">
+        <h3 class="font-semibold">Auto Data Sync (24h)</h3>
+        <p class="text-slate-400 text-sm mt-2">Connect Google Sheets / upload CSV / Shopify exports — data gets pulled daily.</p>
+      </div>
+      <div class="card p-6 rounded-lg shadow">
+        <h3 class="font-semibold">Weekly Insights</h3>
+        <p class="text-slate-400 text-sm mt-2">Short exec summary + 3 prioritized actions with estimated impact.</p>
+      </div>
+      <div class="card p-6 rounded-lg shadow">
+        <h3 class="font-semibold">Monthly Deep Report</h3>
+        <p class="text-slate-400 text-sm mt-2">Product profitability, customer cohorts, top opportunities, and a 30‑day action plan.</p>
+      </div>
+    </section>
 
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <h3>Free Sample</h3>
-                        <p>A risk-free way to experience the platform's core analysis.</p>
-                        <span class="delivery-time">"In just a few minutes"</span>
-                        <button class="btn open-modal-btn" data-plan="Free Sample">🎯 Try Free Sample</button>
-                    </div>
+    <!-- Demo / Video -->
+    <section id="demo" class="mb-8">
+      <div class="flex flex-col md:flex-row items-center gap-6">
+        <div class="md:w-2/3">
+          <h3 class="text-xl font-semibold">See a sample insight</h3>
+          <p class="text-slate-400 mt-2">Below is a short video explaining the report and how to set up in 5 minutes. Replace the YouTube ID with your own video ID.</p>
 
-                    <div class="pricing-card">
-                        <h3>Essential Insights</h3>
-                        <p>For a **one-time project analysis**. Perfect for validating a new idea or getting a quick health check on your business.</p>
-                        <span class="delivery-time">Up to 2,000 Rows</span>
-                        <button class="btn open-modal-btn" data-plan="Essential Insights">🚀 Select Plan</button>
-                    </div>
-
-                    <div class="pricing-card highlight">
-                        <h3>Growth Analytics</h3>
-                        <p>For **weekly performance tracking**. Ideal for e-commerce brands needing to optimize marketing spend.</p>
-                        <span class="delivery-time">Up to 4,500 Rows</span>
-                        <button class="btn open-modal-btn" data-plan="Growth Analytics">⚡ Unlock Growth</button>
-                    </div>
-
-                    <div class="pricing-card">
-                        <h3>Business Intelligence</h3>
-                        <p>For a **comprehensive monthly audit**. Understand deep trends in customer behavior.</p>
-                        <span class="delivery-time">Up to 9,000 Rows</span>
-                        <button class="btn open-modal-btn" data-plan="Business Intelligence">⚡ Get Full Analysis</button>
-                    </div>
-                    
-                    <div class="pricing-card">
-                        <h3>Scale Analytics</h3>
-                        <p>For **quarterly strategic reviews** or large-scale data migration projects.</p>
-                        <span class="delivery-time">Up to 15,000 Rows</span>
-                        <button class="btn open-modal-btn" data-plan="Scale Analytics">⚡ Get Full Report</button>
-                    </div>
-
-                    <div class="pricing-card">
-                        <h3>Apex Vault</h3>
-                        <p>A **fully custom, enterprise-grade solution** with human expert review and consultation.</p>
-                        <span class="delivery-time">20,000+ Rows</span>
-                        <a href="#contact" class="btn">Contact Sales</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq">
-            <div class="container">
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3>What file formats does the platform support?</h3>
-                        <p>Our platform currently supports .csv, .xlsx (Excel), and .json files. If you have another format, please contact us first.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How does the platform handle data privacy?</h3>
-                        <p>Your data is encrypted at all times and permanently deleted from our systems 24 hours after your report is generated. You can read our full <a href="privacy.html">Privacy Policy</a> for more details.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Can I request specific metrics or KPIs?</h3>
-                        <p>Yes! All paid plans include the option to specify custom metrics and requirements in the upload form. Our AI engine will focus the analysis on your specific needs.</p>
-                    </div>
-                     <div class="faq-item">
-                        <h3>What is your refund policy?</h3>
-                        <p>Due to the automated nature of our platform, we do not offer refunds once processing has begun. However, if you are unsatisfied with your report, please contact us and we will work with you to make it right.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="about">
-             <div class="container">
-                <h2 class="section-title">About The Apex Data Platform</h2>
-                <p>The Apex Data platform was built by data engineers and AI enthusiasts passionate about turning raw data into strategic clarity. We believe powerful business decisions shouldn't take days to uncover.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">Get in Touch</h2>
-                <p style="text-align:center; max-width: 700px; margin: -2rem auto 3rem auto; color: var(--text-color-light);">Have a question about an enterprise solution or a custom project? Send us a message!</p>
-                <div class="contact-form-container">
-                    <form action="https://formspree.io/f/YOUR_UNIQUE_CODE" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn" style="width:100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#pricing">Plans & Pricing</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><a href="mailto:contact.apexdata@gmail.com">Email Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <p>Copyright &copy; 2025 Apex Data</p>
+          <!-- Replace VIDEO_ID with your YouTube video id -->
+          <div class="mt-4 w-full aspect-video rounded overflow-hidden">
+            <iframe id="yt-player" class="w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
         </div>
+
+        <div class="md:w-1/3 card p-6 rounded-lg">
+          <h4 class="font-semibold">Sample PDF</h4>
+          <p class="text-slate-400 text-sm mt-2">Download a demo monthly report to show prospects. Replace the link below with your hosted PDF (Google Drive or S3).</p>
+          <a id="sample-pdf" class="mt-4 inline-block text-emerald-400 underline" href="#">Download sample report (replace link)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="mb-12">
+      <h3 class="text-2xl font-semibold">Pricing</h3>
+      <div class="mt-4 grid md:grid-cols-3 gap-6">
+        <div class="p-6 card rounded-lg">
+          <h4 class="font-bold">Starter</h4>
+          <p class="text-slate-400">Weekly insights + basic KPI email</p>
+          <p class="mt-4 text-3xl font-extrabold">$99<span class="text-sm font-normal">/mo</span></p>
+          <button data-payment-link="PASTE_STRIPE_LINK_FOR_STARTER" class="mt-4 w-full bg-indigo-600 px-4 py-2 rounded">Start</button>
+        </div>
+        <div class="p-6 card rounded-lg border-2 border-indigo-500">
+          <h4 class="font-bold">Growth</h4>
+          <p class="text-slate-400">Weekly + monthly insights + lead scoring</p>
+          <p class="mt-4 text-3xl font-extrabold">$149<span class="text-sm font-normal">/mo</span></p>
+          <button data-payment-link="PASTE_STRIPE_LINK_FOR_GROWTH" class="mt-4 w-full bg-emerald-500 px-4 py-2 rounded">Start</button>
+        </div>
+        <div class="p-6 card rounded-lg">
+          <h4 class="font-bold">Scale</h4>
+          <p class="text-slate-400">Full suite + priority support</p>
+          <p class="mt-4 text-3xl font-extrabold">$249<span class="text-sm font-normal">/mo</span></p>
+          <button data-payment-link="PASTE_STRIPE_LINK_FOR_SCALE" class="mt-4 w-full bg-indigo-600 px-4 py-2 rounded">Start</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup form that posts to n8n webhook -->
+    <section id="get-started" class="mb-20">
+      <div class="card p-6 rounded-lg">
+        <h3 class="font-semibold">Get started — quick setup</h3>
+        <p class="text-slate-400 mt-2">Enter your details and upload a sample CSV. Your data folder will be created automatically via our onboarding webhook.</p>
+
+        <form id="onboard-form" class="mt-4 grid gap-3 md:grid-cols-2">
+          <input required name="company" placeholder="Company name" class="p-3 rounded bg-slate-800 border border-slate-700" />
+          <input required name="email" placeholder="Email" type="email" class="p-3 rounded bg-slate-800 border border-slate-700" />
+          <input name="website" placeholder="Website (optional)" class="p-3 rounded bg-slate-800 border border-slate-700" />
+          <select name="client_type" class="p-3 rounded bg-slate-800 border border-slate-700">
+            <option value="shopify">Shopify Store</option>
+            <option value="marketing">Marketing Agency</option>
+            <option value="service">Service Agency</option>
+          </select>
+
+          <label class="col-span-2">
+            <span class="text-sm text-slate-400">Sample CSV (optional)</span>
+            <input name="file" id="file-input" type="file" accept=".csv" class="block mt-2 w-full" />
+          </label>
+
+          <div class="col-span-2 flex gap-3">
+            <button type="submit" class="bg-emerald-500 px-4 py-2 rounded">Start onboarding</button>
+            <button id="pay-after" type="button" class="bg-indigo-600 px-4 py-2 rounded">Pay & Setup</button>
+          </div>
+        </form>
+
+        <p id="onboard-msg" class="mt-3 text-sm text-slate-400"></p>
+      </div>
+    </section>
+
+    <footer class="py-8 text-center text-slate-500">
+      © AI Insights OS • Built with n8n, Stripe & ChatGPT
     </footer>
-    
-    <div id="uploadModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 id="modalTitle" style="margin-bottom: 1.5rem;">Upload Your Data</h2>
-            <form id="uploadForm">
-                <input type="hidden" id="selectedPlan" name="plan">
-                <input type="hidden" id="finalPrice" name="price">
-                <input type="hidden" id="finalUrgency" name="urgency">
-                <input type="hidden" id="paymentUrl" name="paymentUrl">
+  </main>
 
-                <div class="form-group">
-                    <label for="clientEmail">Your Email Address</label>
-                    <input type="email" id="clientEmail" name="email" placeholder="We'll send the results here" required>
-                </div>
+  <!-- --- Integration scripts --- -->
+  <script>
+    // Simple helper: open Stripe Payment Link (recommended for no-backend flows)
+    document.querySelectorAll('button[data-payment-link]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const link = btn.getAttribute('data-payment-link');
+        if(!link || link.includes('PASTE')){
+          alert('Replace the data-payment-link attribute with your Stripe Payment Link URL in the HTML.');
+          return;
+        }
+        window.open(link, '_blank');
+      });
+    });
 
-                <div class="form-group" id="urgencyContainer">
-                    <label for="urgencySelect">Select Delivery Speed</label>
-                    <select id="urgencySelect" name="urgencySelection">
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="dataFile">Data File</label>
-                    <input type="file" id="dataFile" name="file" accept=".csv, .xlsx, .json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="requirements">Specific Requirements or Metrics (Optional)</label>
-                    <textarea id="requirements" name="requirements" placeholder="e.g., 'Analyze the correlation between ad spend and user signups.'"></textarea>
-                </div>
-                
-                <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Proceed</button>
-            </form>
-            <div id="form-message"></div>
-        </div>
-    </div>
+    // Onboard form -> send data + CSV to n8n webhook
+    const onboardForm = document.getElementById('onboard-form');
+    const onboardMsg = document.getElementById('onboard-msg');
 
-    <script>
-        // --- DATA STRUCTURE FOR DYNAMIC SLABS ---
-        const PLAN_OPTIONS = {
-            'Essential Insights': {
-                slabs: [
-                    { time: '48 HOUR STANDARD', price: 399, url: '[STRIPE_LINK_1]' },
-                    { time: '24 HOUR RUSH', price: 599, url: '[STRIPE_LINK_2]' },
-                    { time: '6 HOUR PRIORITY', price: 799, url: '[STRIPE_LINK_3]' }
-                ]
-            },
-            'Growth Analytics': {
-                slabs: [
-                    { time: '72 HOUR STANDARD', price: 899, url: '[STRIPE_LINK_4]' },
-                    { time: '48 HOUR RUSH', price: 1199, url: '[STRIPE_LINK_5]' },
-                    { time: '24 HOUR PRIORITY', price: 1599, url: '[STRIPE_LINK_6]' }
-                ]
-            },
-            'Business Intelligence': {
-                slabs: [
-                    { time: '96 HOUR STANDARD', price: 1499, url: '[STRIPE_LINK_7]' },
-                    { time: '72 HOUR RUSH', price: 1999, url: '[STRIPE_LINK_8]' },
-                    { time: '48 HOUR PRIORITY', price: 2499, url: '[STRIPE_LINK_9]' }
-                ]
-            },
-             'Scale Analytics': {
-                 slabs: [
-                    { time: '120 HOUR STANDARD', price: 2299, url: '[STRIPE_LINK_10]' },
-                    { time: '96 HOUR RUSH', price: 2999, url: '[STRIPE_LINK_11]' },
-                    { time: '72 HOUR PRIORITY', price: 3499, url: '[STRIPE_LINK_12]' }
-                 ]
-            },
-            'Free Sample': {
-                slabs: [{ time: 'Free Sample', price: 0, url: 'FREE' }]
-            }
-        };
+    // Replace with your n8n webhook URL (incoming webhook) that will create the client folder & validate file
+    const N8N_WEBHOOK = 'PASTE_YOUR_N8N_WEBHOOK_URL_HERE';
 
-        // --- MODAL CONTROL LOGIC ---
-        const modal = document.getElementById('uploadModal');
-        const openModalBtns = document.querySelectorAll('.open-modal-btn');
-        const closeModalBtn = document.querySelector('.close-button');
-        
-        const selectedPlanInput = document.getElementById('selectedPlan');
-        const finalPriceInput = document.getElementById('finalPrice');
-        const finalUrgencyInput = document.getElementById('finalUrgency');
-        const paymentUrlInput = document.getElementById('paymentUrl');
-        
-        const urgencyContainer = document.getElementById('urgencyContainer');
-        const urgencySelect = document.getElementById('urgencySelect');
-        
-        const modalTitle = document.getElementById('modalTitle');
-        const submitBtn = document.getElementById('submitBtn');
-        const uploadForm = document.getElementById('uploadForm');
+    onboardForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      onboardMsg.textContent = 'Uploading...';
 
-        const populateUrgencyDropdown = (plan) => {
-            const options = PLAN_OPTIONS[plan];
-            urgencySelect.innerHTML = ''; 
-            
-            options.slabs.forEach((slab, index) => {
-                const option = document.createElement('option');
-                option.value = index; 
-                option.textContent = `${slab.time} - $${slab.price}`;
-                urgencySelect.appendChild(option);
-            });
-            
-            updateModalPrice(plan, 0); 
-        };
+      const fd = new FormData(onboardForm);
+      // handle file upload
+      const fileInput = document.getElementById('file-input');
+      if(fileInput.files.length) fd.append('file', fileInput.files[0]);
 
-        const updateModalPrice = (plan, slabIndex) => {
-            const slab = PLAN_OPTIONS[plan].slabs[slabIndex];
-            finalPriceInput.value = slab.price;
-            finalUrgencyInput.value = slab.time;
-            paymentUrlInput.value = slab.url;
-            submitBtn.textContent = `Proceed to Payment ($${slab.price})`;
-        };
+      if(!N8N_WEBHOOK || N8N_WEBHOOK.includes('PASTE')){
+        alert('Please replace N8N_WEBHOOK variable in the HTML with your incoming webhook URL from n8n.');
+        onboardMsg.textContent = '';
+        return;
+      }
 
-        openModalBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const plan = btn.getAttribute('data-plan');
-                
-                selectedPlanInput.value = plan;
-                modalTitle.textContent = `Configure Your ${plan} Report`;
+      try{
+        const res = await fetch(N8N_WEBHOOK, { method: 'POST', body: fd });
+        const data = await res.json();
+        onboardMsg.textContent = data.message || 'Onboarding started — check your email.';
+      }catch(err){
+        console.error(err);
+        onboardMsg.textContent = 'Failed to send. Check console for errors.';
+      }
+    });
 
-                if (plan === 'Free Sample') {
-                    urgencyContainer.style.display = 'none';
-                    finalPriceInput.value = 0;
-                    finalUrgencyInput.value = 'N/A';
-                    paymentUrlInput.value = 'FREE';
-                    submitBtn.textContent = 'Claim Free Report';
-                } else {
-                    urgencyContainer.style.display = 'block';
-                    populateUrgencyDropdown(plan);
-                    urgencySelect.onchange = () => updateModalPrice(plan, urgencySelect.value);
-                }
-                
-                modal.style.display = 'flex';
-                uploadForm.reset();
-                document.getElementById('form-message').style.display = 'none';
-            });
-        });
+    // Signup button -> open demo modal / mailto fallback
+    document.getElementById('signup-btn').addEventListener('click', ()=>{
+      // open mailto as fallback
+      window.location.href = 'mailto:chris@datapilot.in.inet?subject=Demo%20Request&body=I%27d%20like%20a%2010%20min%20demo.';
+    });
 
-        // --- GENERAL MODAL & SCRIPT LOGIC ---
-        const closeModal = () => { modal.style.display = 'none'; }
-        closeModalBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => { if (event.target == modal) { closeModal(); } });
+    // Pay & Setup -> open payment link if available else show message
+    document.getElementById('pay-after').addEventListener('click', ()=>{
+      const primary = document.getElementById('pay-link-btn').getAttribute('data-payment-link');
+      if(primary && !primary.includes('PASTE')) window.open(primary,'_blank');
+      else alert('Set the main payment link in the hero button to enable inline payment.');
+    });
+  </script>
 
-        const messageDiv = document.getElementById('form-message');
+  <!-- Developer notes & optional server snippet (keep for your reference). Replace keys and host on Vercel/Netlify if you want a Checkout session flow. -->
+  <!--
+  --- Optional Node.js server (serverless) to create Stripe Checkout session ---
 
-        uploadForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const n8nWebhookUrl = 'YOUR_N8N_WEBHOOK_URL_HERE';
-            const finalPaymentUrl = paymentUrlInput.value;
+  // File: api/create-checkout-session.js (Node.js / Vercel serverless example)
+  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-            if (n8nWebhookUrl === 'YOUR_N8N_WEBHOOK_URL_HERE' || (finalPaymentUrl.includes('[STRIPE_LINK') && finalPaymentUrl !== 'FREE')) {
-                alert('CRITICAL: Please configure Stripe links and n8n webhook URL in the script.');
-                return;
-            }
+  module.exports = async (req, res) => {
+    const { priceId, successUrl, cancelUrl } = req.body;
+    try{
+      const session = await stripe.checkout.sessions.create({
+        mode: 'subscription',
+        line_items: [{price: priceId, quantity: 1}],
+        success_url: successUrl,
+        cancel_url: cancelUrl,
+      });
+      res.json({ sessionId: session.id });
+    }catch(e){
+      res.status(500).json({error: e.message});
+    }
+  }
 
-            submitBtn.textContent = 'Uploading...';
-            submitBtn.disabled = true;
-            
-            const formData = new FormData(uploadForm);
-            
-            try {
-                const response = await fetch(n8nWebhookUrl, { method: 'POST', body: formData });
-                if (!response.ok) throw new Error(`Server responded with status: ${response.status}`);
-                
-                if (finalPaymentUrl === 'FREE') {
-                    messageDiv.textContent = 'Upload successful! Your free report will be emailed in a few minutes.';
-                    messageDiv.className = 'message-success'; 
-                    messageDiv.style.display = 'block';
-                    setTimeout(closeModal, 4000);
-                } else {
-                    window.location.href = finalPaymentUrl;
-                }
-            } catch (error) {
-                messageDiv.textContent = 'An error occurred during upload. Please try again.';
-                messageDiv.className = 'message-error';
-                messageDiv.style.display = 'block';
-                console.error('Upload Error:', error);
-            } finally {
-                if (finalPaymentUrl !== 'FREE') {
-                    submitBtn.textContent = `Proceed to Payment ($${finalPriceInput.value})`;
-                    submitBtn.disabled = false;
-                }
-            }
-        });
+  Frontend (if you use serverless):
+  fetch('/api/create-checkout-session', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({priceId:'price_123', successUrl:location.href+'?s=1', cancelUrl:location.href})})
+    .then(r=>r.json()).then(async data=>{ const stripe = Stripe('pk_test_...'); await stripe.redirectToCheckout({sessionId: data.sessionId}); })
+  -->
 
-        document.getElementById('closeBanner').addEventListener('click', function() {
-            document.getElementById('topBanner').style.display = 'none';
-            document.querySelector('header').style.top = '0';
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-    </script>
-    
+</script>
 </body>
 </html>
-
-
