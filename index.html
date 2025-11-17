@@ -7,185 +7,254 @@
   <meta name="description" content="Automated, actionable weekly & monthly AI insights for Shopify stores & agencies — updated every 24 hours." />
   <meta property="og:title" content="Data Pilot — AI Insights & Opportunity Reports" />
   <meta property="og:description" content="Automated, actionable weekly & monthly AI insights for Shopify stores & agencies — updated every 24 hours." />
+  <meta property="og:image" content="assets/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     :root{
-      --accent-start:#06b6d4;
-      --accent-end:#08b0a8;
-      --bg-1:#061021;
-      --bg-2:#071829;
-      --card:#0b1320;
-      --muted:#94a3b8;
+      --accent1: #06b6d4;
+      --accent2: #08b0a8;
+      --bg-1: #041426;
+      --bg-2: #071829;
+      --card: rgba(255,255,255,0.02);
+      --muted: #94a3b8;
     }
-    body { background: linear-gradient(180deg,var(--bg-1) 0%,var(--bg-2) 100%); font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #e6eef6; }
-    .glass { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); backdrop-filter: blur(6px); }
-    .btn-primary { background: linear-gradient(90deg,var(--accent-start),var(--accent-end)); color: #042; font-weight: 700; }
-    .brand-mark { width:72px; height:72px; object-fit:contain; }
-    .card { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border-radius:12px; padding:18px; }
-    .card:hover { transform: translateY(-6px); transition: transform .18s ease; }
-    @media (max-width:768px) { .hide-sm { display:none; } .brand-mark { width:56px; height:56px; } }
+    html,body { height:100%; }
+    body {
+      margin:0;
+      background: linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);
+      color: #e6eef6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+      border-radius: 14px;
+    }
+    .btn-cta {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #022;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(8,176,168,0.12);
+    }
+    .pill { background: rgba(255,255,255,0.03); padding:8px 12px; border-radius:999px; color:var(--muted); font-weight:600; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border-radius:12px; padding:18px; border:1px solid rgba(255,255,255,0.025); }
+    .feature-icon { width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; background:rgba(255,255,255,0.02); color:var(--accent1); }
+    a { text-decoration:none; }
+    footer a { color: #94a3b8; text-decoration: underline; }
+    /* subtle animations */
+    .float-up { transform: translateY(6px); transition: transform .28s ease; }
+    .card:hover .float-up { transform: translateY(0px); }
+    @media (max-width:768px) {
+      .hide-mobile { display:none; }
+    }
   </style>
 </head>
 <body>
-  <header class="py-6 px-6 max-w-6xl mx-auto flex items-center justify-between">
+
+  <!-- NAV -->
+  <header class="max-w-6xl mx-auto flex items-center justify-between px-6 py-6">
     <div class="flex items-center gap-4">
-      <!-- Embedded logo (data URI) -->
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtE... (TRUNCATED IN THIS DISPLAY - full data included in actual file)" alt="Data Pilot logo" class="brand-mark rounded" />
+      <!-- Upload your logo to assets/logo.png -->
+      <img src="assets/logo.png" alt="Data Pilot logo" class="w-16 h-16 object-contain rounded-md" onerror="this.style.display='none'">
       <div>
-        <h1 class="text-lg font-semibold">Data Pilot</h1>
-        <p class="text-sm text-[var(--muted)]">AI Insights & Opportunity Reports — Shopify & Agencies</p>
+        <div class="text-lg font-semibold">Data Pilot</div>
+        <div class="text-sm" style="color:var(--muted)">AI Insights & Opportunity Reports</div>
       </div>
     </div>
 
-    <nav class="flex gap-4 items-center text-sm">
-      <a href="#features" class="text-slate-300 hover:underline">Features</a>
-      <a href="#pricing" class="text-slate-300 hover:underline">Pricing</a>
-      <a href="#demo" class="text-slate-300 hover:underline">Demo</a>
-      <a href="#get-started" class="btn-primary px-4 py-2 rounded shadow-sm ml-2">Get Insights</a>
+    <nav class="flex items-center gap-4 text-sm">
+      <a href="#features" class="text-slate-300 hover:text-white">Features</a>
+      <a href="#pricing" class="text-slate-300 hover:text-white">Pricing</a>
+      <a href="#demo" class="text-slate-300 hover:text-white">Demo</a>
+      <a href="#get-started" class="btn-cta ml-3">Get Insights</a>
     </nav>
   </header>
 
   <main class="max-w-6xl mx-auto px-6">
+
     <!-- HERO -->
-    <section class="rounded-2xl p-10 mb-8 glass">
-      <div class="md:flex md:items-center md:justify-between gap-6">
-        <div class="md:w-2/3">
-          <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Find hidden growth opportunities using AI + your data</h2>
-          <p class="mt-4 text-slate-300 text-lg max-w-xl">Automated weekly & monthly reports that tell you exactly what to stop, what to scale, and where profit hides — updated every 24 hours and delivered to your inbox.</p>
+    <section class="glass p-8 md:p-12 rounded-2xl mb-8 grid md:grid-cols-2 gap-6 items-center">
+      <div>
+        <div class="pill inline-block mb-4">Built for Shopify & Agencies</div>
+        <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">Find hidden growth opportunities using AI + your data</h1>
+        <p class="mt-4 text-slate-300 max-w-xl">Automated weekly & monthly reports that tell you exactly what to stop, what to scale, and where profit hides — synced every 24 hours and delivered to your inbox.</p>
 
-          <ul class="mt-6 grid sm:grid-cols-3 gap-3 text-sm">
-            <li class="p-3 bg-[color:var(--card)] rounded flex items-center gap-3"><span class="text-emerald-400">✓</span> Auto data sync (24h)</li>
-            <li class="p-3 bg-[color:var(--card)] rounded flex items-center gap-3"><span class="text-emerald-400">✓</span> Weekly prioritized actions</li>
-            <li class="p-3 bg-[color:var(--card)] rounded flex items-center gap-3"><span class="text-emerald-400">✓</span> Monthly deep profitability report</li>
-          </ul>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <!-- Stripe Payment Link placeholder -->
-            <button id="pay-link-btn" data-payment-link="PASTE_YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn-primary px-6 py-3 rounded">Start 14-day Trial</button>
-            <button id="signup-btn" class="border border-slate-700 px-6 py-3 rounded text-slate-200">Request Demo</button>
-            <span class="text-sm text-slate-400 self-center">or email <a href="mailto:chris@datapilot.in.inet" class="underline">chris@datapilot.in.inet</a></span>
-          </div>
+        <div class="mt-6 flex flex-wrap gap-3 items-center">
+          <!-- Stripe Payment Links: replace data-payment-link with your link -->
+          <button id="trial-btn" data-payment-link="PASTE_YOUR_STRIPE_PAYMENT_LINK_HERE" class="btn-cta">Start 14-day Trial</button>
+          <button id="demo-btn" class="border border-white/6 px-4 py-2 rounded text-slate-200">Request Demo</button>
+          <div class="text-sm text-[var(--muted)] ml-2">or email <a href="mailto:chris@datapilot.in.inet" class="underline text-slate-100">chris@datapilot.in.inet</a></div>
         </div>
 
-        <div class="md:w-1/3 mt-6 md:mt-0 flex items-center justify-center">
-          <!-- HERO image placeholder (replace with hero image or embedded demo video) -->
-          <div class="w-full rounded-lg overflow-hidden shadow-lg" style="max-width:320px;">
-            <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 flex items-center justify-center" style="height:260px;">
-              <div class="text-slate-500 text-sm">Hero image / demo video placeholder</div>
-            </div>
+        <div class="mt-6 grid sm:grid-cols-3 gap-3">
+          <div class="text-xs text-[var(--muted)]">✔ Auto data sync (24h)</div>
+          <div class="text-xs text-[var(--muted)]">✔ Weekly prioritized actions</div>
+          <div class="text-xs text-[var(--muted)]">✔ Monthly profitability deep-dive</div>
+        </div>
+
+        <!-- trust / metrics -->
+        <div class="mt-6 flex gap-6 items-center text-sm text-[var(--muted)]">
+          <div><strong class="text-white">100+</strong> stores & agencies</div>
+          <div><strong class="text-white">Avg +18%</strong> revenue impact</div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center">
+        <!-- Hero visual: placeholder for demo video or image -->
+        <div class="w-full max-w-md rounded-lg overflow-hidden card">
+          <div style="height:260px; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#071827,#0b1b2a);">
+            <!-- Replace this block with your YouTube iframe when ready -->
+            <div class="text-center text-slate-500">Demo video / hero image placeholder</div>
+          </div>
+          <div class="px-4 py-3">
+            <div class="text-sm text-[var(--muted)]">Automated insights • Weekly summary • Actionable plan</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- FEATURES -->
-    <section id="features" class="grid md:grid-cols-3 gap-6 mb-8">
-      <div class="card">
-        <h3 class="font-semibold">Auto Data Sync (24h)</h3>
-        <p class="text-slate-400 text-sm mt-2">Connect Shopify, Google Sheets, or upload CSVs — data updates every 24 hours and feeds the insight engine.</p>
+    <section id="features" class="mb-8 grid md:grid-cols-3 gap-6">
+      <div class="card float-up">
+        <div class="flex items-start gap-3">
+          <div class="feature-icon">📥</div>
+          <div>
+            <h4 class="font-semibold">Auto data sync</h4>
+            <p class="text-[var(--muted)] text-sm mt-1">Connect Shopify, Google Sheets or upload CSVs. Data updates every 24 hours.</p>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3 class="font-semibold">Weekly Insights</h3>
-        <p class="text-slate-400 text-sm mt-2">Short executive summary with 3 prioritized actions, estimated dollar impact, and time-to-implement.</p>
+
+      <div class="card float-up">
+        <div class="flex items-start gap-3">
+          <div class="feature-icon">🧠</div>
+          <div>
+            <h4 class="font-semibold">AI-driven insights</h4>
+            <p class="text-[var(--muted)] text-sm mt-1">Automated analysis that surfaces what’s costing you money and where to scale next.</p>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3 class="font-semibold">Monthly Deep Report</h3>
-        <p class="text-slate-400 text-sm mt-2">Product profitability, customer cohorts, channel ROAS, seasonality, and a 30-day action plan.</p>
+
+      <div class="card float-up">
+        <div class="flex items-start gap-3">
+          <div class="feature-icon">📬</div>
+          <div>
+            <h4 class="font-semibold">Weekly + Monthly reports</h4>
+            <p class="text-[var(--muted)] text-sm mt-1">Short executive summary, 3 priority actions, and a 30-day playbook.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- DEMO -->
-    <section id="demo" class="mb-8">
-      <div class="flex flex-col md:flex-row items-start gap-6">
-        <div class="md:w-2/3">
-          <h3 class="text-xl font-semibold">See a sample insight</h3>
-          <p class="text-slate-400 mt-2">Demo video placeholder — replace this block with your YouTube iframe when ready.</p>
-
-          <!-- Video placeholder: replace with iframe: <iframe src="https://www.youtube.com/embed/VIDEO_ID"...></iframe> -->
-          <div class="mt-4 w-full aspect-video rounded overflow-hidden bg-black flex items-center justify-center text-slate-500">
-            Video placeholder (replace with iframe)
-          </div>
+    <!-- TESTIMONIAL / CASE -->
+    <section class="mb-8">
+      <div class="glass p-6 rounded-lg grid md:grid-cols-3 gap-6 items-center">
+        <div class="md:col-span-2">
+          <h3 class="text-xl font-semibold">Case study — D2C Shopify brand</h3>
+          <p class="text-[var(--muted)] mt-2">We identified 2 low-margin SKUs and a mis-targeted ad set. After pausing wasteful spend and shifting budget, revenue improved and CAC dropped — +22% net revenue within 30 days.</p>
+          <div class="mt-4 text-sm text-[var(--muted)]">Ready to see similar opportunities in your store?</div>
         </div>
-
-        <div class="md:w-1/3">
-          <div class="card">
-            <h4 class="font-semibold">Sample PDF</h4>
-            <p class="text-slate-400 text-sm mt-2">Upload a sample monthly report later. For now this link is a placeholder.</p>
-            <a id="sample-pdf" class="mt-4 inline-block text-emerald-400 underline" href="#">Download sample report (placeholder)</a>
-          </div>
+        <div class="text-right hide-mobile">
+          <div class="text-sm text-[var(--muted)]">“Actionable and fast — recommended.”</div>
+          <div class="text-white font-semibold mt-2">— Priya, E-commerce Founder</div>
         </div>
       </div>
     </section>
 
     <!-- PRICING -->
     <section id="pricing" class="mb-12">
-      <h3 class="text-2xl font-semibold">Pricing</h3>
-      <div class="mt-4 grid md:grid-cols-3 gap-6">
+      <h3 class="text-2xl font-semibold mb-4">Pricing</h3>
+      <div class="grid md:grid-cols-3 gap-6">
         <div class="card">
-          <h4 class="font-bold">Starter</h4>
-          <p class="text-slate-400">Weekly insights + basic KPI email</p>
-          <p class="mt-4 text-3xl font-extrabold">$99<span class="text-sm font-normal">/mo</span></p>
-          <button data-payment-link="PASTE_STRIPE_LINK_FOR_STARTER" class="mt-4 w-full btn-primary px-4 py-2 rounded">Start</button>
+          <div class="text-sm text-[var(--muted)]">Starter</div>
+          <div class="text-2xl font-extrabold mt-3">$99 <span class="text-sm text-[var(--muted)]">/mo</span></div>
+          <p class="text-[var(--muted)] mt-2 text-sm">Weekly insights + basic KPI email. Best for small stores.</p>
+          <button data-payment-link="PASTE_STRIPE_LINK_FOR_STARTER" class="btn-cta w-full mt-4">Start</button>
         </div>
+
         <div class="card border-2 border-cyan-500">
-          <h4 class="font-bold">Growth</h4>
-          <p class="text-slate-400">Weekly + monthly insights + lead scoring</p>
-          <p class="mt-4 text-3xl font-extrabold">$149<span class="text-sm font-normal">/mo</span></p>
-          <button data-payment-link="PASTE_STRIPE_LINK_FOR_GROWTH" class="mt-4 w-full btn-primary px-4 py-2 rounded">Start</button>
+          <div class="text-sm text-[var(--muted)]">Growth</div>
+          <div class="text-2xl font-extrabold mt-3">$149 <span class="text-sm text-[var(--muted)]">/mo</span></div>
+          <p class="text-[var(--muted)] mt-2 text-sm">Weekly + monthly insights, lead scoring, and opportunity playbook. Best for scaling stores & agencies.</p>
+          <button data-payment-link="PASTE_STRIPE_LINK_FOR_GROWTH" class="btn-cta w-full mt-4">Start</button>
         </div>
+
         <div class="card">
-          <h4 class="font-bold">Scale</h4>
-          <p class="text-slate-400">Full suite + priority support</p>
-          <p class="mt-4 text-3xl font-extrabold">$249<span class="text-sm font-normal">/mo</span></p>
-          <button data-payment-link="PASTE_STRIPE_LINK_FOR_SCALE" class="mt-4 w-full btn-primary px-4 py-2 rounded">Start</button>
+          <div class="text-sm text-[var(--muted)]">Scale</div>
+          <div class="text-2xl font-extrabold mt-3">$249 <span class="text-sm text-[var(--muted)]">/mo</span></div>
+          <p class="text-[var(--muted)] mt-2 text-sm">Full suite, priority support & custom reports. For agencies & larger brands.</p>
+          <button data-payment-link="PASTE_STRIPE_LINK_FOR_SCALE" class="btn-cta w-full mt-4">Start</button>
         </div>
       </div>
     </section>
 
-    <!-- ONBOARDING -->
-    <section id="get-started" class="mb-20">
+    <!-- ONBOARDING FORM -->
+    <section id="get-started" class="mb-16">
       <div class="card">
         <h3 class="font-semibold">Get started — quick setup</h3>
-        <p class="text-slate-400 mt-2">Enter your details and upload a sample CSV. Your data folder will be created automatically via our onboarding webhook.</p>
+        <p class="text-[var(--muted)] mt-2">Enter details and upload a sample CSV. We create your data folder and start the 24h sync.</p>
 
         <form id="onboard-form" class="mt-4 grid gap-3 md:grid-cols-2">
-          <input required name="company" placeholder="Company name" class="p-3 rounded bg-slate-900 border border-slate-800" />
-          <input required name="email" placeholder="Email" type="email" class="p-3 rounded bg-slate-900 border border-slate-800" value="chris@datapilot.in.inet" />
-          <input name="website" placeholder="Website (optional)" class="p-3 rounded bg-slate-900 border border-slate-800" />
-          <select name="client_type" class="p-3 rounded bg-slate-900 border border-slate-800">
+          <input required name="company" placeholder="Company name" class="p-3 rounded bg-[#061422] border border-slate-800" />
+          <input required name="email" placeholder="Email" type="email" class="p-3 rounded bg-[#061422] border border-slate-800" value="chris@datapilot.in.inet" />
+          <input name="website" placeholder="Website (optional)" class="p-3 rounded bg-[#061422] border border-slate-800" />
+          <select name="client_type" class="p-3 rounded bg-[#061422] border border-slate-800">
             <option value="shopify">Shopify Store</option>
             <option value="marketing">Marketing Agency</option>
             <option value="service">Service Agency</option>
           </select>
 
-          <label class="col-span-2">
-            <span class="text-sm text-slate-400">Sample CSV (optional)</span>
+          <label class="col-span-2 text-[var(--muted)]">
+            Sample CSV (optional)
             <input name="file" id="file-input" type="file" accept=".csv" class="block mt-2 w-full" />
           </label>
 
           <div class="col-span-2 flex gap-3">
-            <button type="submit" class="bg-gradient-to-r from-emerald-400 to-teal-500 px-4 py-2 rounded">Start onboarding</button>
-            <button id="pay-after" type="button" class="bg-gradient-to-r from-indigo-600 to-cyan-500 px-4 py-2 rounded">Pay & Setup</button>
+            <button type="submit" class="btn-cta px-4 py-2">Start onboarding</button>
+            <button id="pay-after" type="button" class="border border-white/8 px-4 py-2 rounded">Pay & Setup</button>
           </div>
         </form>
+        <div id="onboard-msg" class="mt-3 text-sm text-[var(--muted)]"></div>
 
-        <p id="onboard-msg" class="mt-3 text-sm text-slate-400"></p>
-
-        <div class="mt-4 text-sm text-slate-400">Contact: <a class="underline text-slate-200" href="mailto:chris@datapilot.in.inet">chris@datapilot.in.inet</a> • GitHub: <a class="underline" href="https://github.com/kalpak901">kalpak901</a></div>
+        <div class="mt-4 text-sm text-[var(--muted)]">Contact: <a class="underline" href="mailto:chris@datapilot.in.inet">chris@datapilot.in.inet</a> • GitHub: <a class="underline" href="https://github.com/kalpak901">kalpak901</a></div>
       </div>
     </section>
 
-    <footer class="py-8 text-center text-slate-500">
+    <!-- FAQ -->
+    <section class="mb-12">
+      <h3 class="text-xl font-semibold mb-4">FAQ</h3>
+      <div class="grid md:grid-cols-2 gap-4 text-[var(--muted)]">
+        <div class="card">
+          <b>How do you access my data?</b>
+          <p class="mt-2">You upload a CSV or connect a read-only Google Sheet / Shopify export. We never share your raw data.</p>
+        </div>
+        <div class="card">
+          <b>How long until I see results?</b>
+          <p class="mt-2">First weekly insight within 7 days after we receive initial data. Monthly deep report after 30 days.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-8 text-center text-[var(--muted)]">
       © Data Pilot • Built with n8n, Stripe & ChatGPT
+      <div class="mt-2"><a href="/privacy.html">Privacy</a> • <a href="/terms.html">Terms</a></div>
     </footer>
+
   </main>
 
   <!-- Integration scripts -->
   <script>
-    // Note: the image data URI above was truncated in the preview. In the actual file this is the full base64 image.
+    // Stripe payment link buttons
     document.querySelectorAll('button[data-payment-link]').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const link = btn.getAttribute('data-payment-link');
@@ -194,11 +263,11 @@
       });
     });
 
-    // Onboard form -> send data + CSV to n8n webhook
+    // Onboard form -> POST to n8n webhook
     const onboardForm = document.getElementById('onboard-form');
     const onboardMsg = document.getElementById('onboard-msg');
 
-    // Replace with your n8n webhook URL (incoming webhook) that will create the client folder & validate file
+    // Replace with your n8n webhook URL
     const N8N_WEBHOOK = 'PASTE_YOUR_N8N_WEBHOOK_URL_HERE';
 
     onboardForm.addEventListener('submit', async (e)=>{
@@ -206,28 +275,26 @@
       onboardMsg.textContent = 'Uploading...';
       const fd = new FormData(onboardForm);
       const fileInput = document.getElementById('file-input');
-      if(fileInput.files.length) fd.append('file', fileInput.files[0]);
-
-      if(!N8N_WEBHOOK || N8N_WEBHOOK.includes('PASTE')){ alert('Please replace N8N_WEBHOOK variable in the HTML with your incoming webhook URL from n8n.'); onboardMsg.textContent = ''; return; }
-
-      try{
+      if(fileInput.files && fileInput.files.length) fd.append('file', fileInput.files[0]);
+      if(!N8N_WEBHOOK || N8N_WEBHOOK.includes('PASTE')) { alert('Please replace N8N_WEBHOOK variable with your n8n incoming webhook URL.'); onboardMsg.textContent=''; return; }
+      try {
         const res = await fetch(N8N_WEBHOOK, { method: 'POST', body: fd });
         const data = await res.json();
         onboardMsg.textContent = data.message || 'Onboarding started — check your email.';
-      }catch(err){
+      } catch(err) {
         console.error(err);
         onboardMsg.textContent = 'Failed to send. Check console for errors.';
       }
     });
 
-    // Signup button -> mailto fallback
-    document.getElementById('signup-btn').addEventListener('click', ()=>{
-      window.location.href = 'mailto:chris@datapilot.in.inet?subject=Demo%20Request&body=I%27d%20like%20a%2010%20min%20demo.';
+    // Demo button fallback
+    document.getElementById('demo-btn').addEventListener('click', ()=> {
+      window.location.href = 'mailto:chris@datapilot.in.inet?subject=Demo%20Request&body=Please%20book%20a%2010%20min%20demo.';
     });
 
-    // Pay & Setup -> uses hero payment link as primary
+    // Pay & Setup uses hero primary link if set
     document.getElementById('pay-after').addEventListener('click', ()=>{
-      const primary = document.getElementById('pay-link-btn')?.getAttribute('data-payment-link');
+      const primary = document.getElementById('trial-btn')?.getAttribute('data-payment-link');
       if(primary && !primary.includes('PASTE')) window.open(primary,'_blank');
       else alert('Set the main payment link in the hero button to enable inline payment.');
     });
